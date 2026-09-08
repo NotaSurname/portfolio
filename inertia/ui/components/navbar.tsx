@@ -1,30 +1,85 @@
+import { useRef, type MouseEvent } from 'react'
+import ThemeToggle from '~/ui/components/theme_toggle'
+
 export default function NavBar() {
+  const identityRef = useRef<HTMLDivElement>(null)
+  const identityCircleRef = useRef<HTMLDivElement>(null)
+  const linksRef = useRef<HTMLDivElement>(null)
+  const linksCircleRef = useRef<HTMLDivElement>(null)
+
+  const moveCircle = (
+    e: MouseEvent<HTMLElement>,
+    boxRef: React.RefObject<HTMLDivElement | null>,
+    circleRef: React.RefObject<HTMLDivElement | null>
+  ) => {
+    const box = boxRef.current
+    const circle = circleRef.current
+    if (!box || !circle) return
+
+    const rect = box.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    circle.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
+    circle.style.opacity = '1'
+  }
+
+  const hideCircle = (circleRef: React.RefObject<HTMLDivElement | null>) => {
+    if (circleRef.current) circleRef.current.style.opacity = '0'
+  }
+
   return (
-    <nav className="mx-auto flex w-fit max-w-full flex-wrap items-stretch justify-center gap-3 p-2 sm:p-3">
-      <div className="flex min-w-fit items-center gap-3 rounded-2xl bg-neutral-100 px-4 py-2 sm:px-5">
-        <span className="text-sm font-medium text-neutral-900">Logo</span>
-        <div className="flex flex-col leading-tight">
-          <span className="text-sm font-semibold text-neutral-900">Mathéo</span>
-          <span className="text-xs text-neutral-500">Développeur Web</span>
+    <nav className="mx-auto flex w-fit max-w-full flex-wrap items-stretch justify-center gap-6 sm:gap-12 p-2 sm:p-3">
+      {/* Bloc identité */}
+      <div
+        ref={identityRef}
+        onMouseMove={(e) => moveCircle(e, identityRef, identityCircleRef)}
+        onMouseLeave={() => hideCircle(identityCircleRef)}
+        className="relative flex min-w-fit items-center gap-1.5 overflow-hidden rounded-2xl bg-white dark:bg-black px-4 py-5 sm:gap-3 sm:px-5"
+      >
+        <span className="relative z-10 text-sm font-medium text-slate-900 dark:text-white">
+          Logo
+        </span>
+        <div className="relative z-10 flex flex-col leading-tight">
+          <span className="font-semibold text-slate-900 dark:text-white">Mathéo</span>
+          <span className="text-sm text-slate-500 dark:text-white/70">Développeur Web</span>
         </div>
+
+        {/* Cercle d'inversion — z-20, au-dessus du texte pour l'inverser aussi */}
+        <div
+          ref={identityCircleRef}
+          className="pointer-events-none absolute left-0 top-0 z-20 h-14 w-14 rounded-full bg-white opacity-0 mix-blend-difference transition-[transform,opacity] duration-500 ease-out"
+        />
       </div>
 
-      {/* Liens + toggle theme */}
-      <div className="flex min-w-fit items-center gap-6 rounded-2xl bg-neutral-100 px-4 py-2 sm:gap-8 sm:px-6">
-        <ul className="flex flex-wrap items-center gap-4 text-sm font-medium text-neutral-900 sm:gap-6">
-          <li className="cursor-pointer p-2 rounded-lg hover:bg-black hover:text-white transition-all duration-400">
+      {/* Bloc liens */}
+      <div
+        ref={linksRef}
+        onMouseMove={(e) => moveCircle(e, linksRef, linksCircleRef)}
+        onMouseLeave={() => hideCircle(linksCircleRef)}
+        className="relative flex min-w-fit items-center gap-6 overflow-hidden rounded-2xl bg-white dark:bg-black px-4 py-2 sm:gap-8 sm:px-6"
+      >
+        <ul className="relative z-10 flex flex-wrap items-center gap-4 font-medium text-slate-900 dark:text-white sm:gap-6">
+          <li className="cursor-pointer p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400">
             A propos
           </li>
-          <li className="cursor-pointer p-2 rounded-lg hover:bg-black hover:text-white transition-all duration-400">
+          <li className="cursor-pointer p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400">
             Mes projets
           </li>
-          <li className="cursor-pointer p-2 rounded-lg hover:bg-black hover:text-white transition-all duration-400">
+          <li className="cursor-pointer p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400">
             Me contacter
           </li>
         </ul>
 
-        {/* Placeholder — ThemeToggle en composant séparé à venir */}
-        <div className="shrink-0">{/* <ThemeToggle /> */}ThemeToggle</div>
+        <div className="relative z-10 shrink-0">
+          <ThemeToggle />
+        </div>
+
+        {/* Cercle d'inversion — z-20, au-dessus du texte pour l'inverser aussi */}
+        <div
+          ref={linksCircleRef}
+          className="pointer-events-none absolute left-0 top-0 z-20 h-14 w-14 rounded-full bg-white opacity-0 mix-blend-difference transition-[transform,opacity] duration-500 ease-out"
+        />
       </div>
     </nav>
   )
