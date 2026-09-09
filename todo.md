@@ -1,0 +1,6 @@
+- [ ] NPM Install & config PostgreSQL
+- [ ] Create login page (no register)
+- [ ] Hidden auth → admin dashboard
+- [ ] In dashboard → project (CRUD), change main picture
+- [ ] Rate limit on login page
+- [ ] Errors messages
