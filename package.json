@@ -81,6 +81,7 @@
     "lucide-react": "^1.43.0",
     "luxon": "^3.7.2",
     "motion": "^13.2.0",
+    "pg": "^8.23.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "reflect-metadata": "^0.2.2",
