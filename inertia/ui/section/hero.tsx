@@ -29,7 +29,7 @@ export default function Hero({ photoSrc, firstName }: HeroProps) {
           {photoSrc ? (
             <img src={photoSrc} alt={firstName} className="h-full w-full object-cover" />
           ) : (
-            <div className="flex h-full w-full flex-col items-center justify-center bg-slate-100 dark:bg-slate-800">
+            <div className="flex h-full w-full flex-col items-center justify-center bg-slate-100 dark:bg-neutral-800">
               <User
                 className="h-20 w-20 text-slate-400 dark:text-slate-600 sm:h-24 sm:w-24"
                 strokeWidth={1.5}

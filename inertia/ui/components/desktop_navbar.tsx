@@ -1,5 +1,7 @@
 import { useRef, type MouseEvent } from 'react'
 import ThemeToggle from '~/ui/components/theme_toggle'
+import { usePage } from '@inertiajs/react'
+import { Link } from '@adonisjs/inertia/react'
 
 export default function Desktop_navbar() {
   const identityRef = useRef<HTMLDivElement>(null)
@@ -27,6 +29,12 @@ export default function Desktop_navbar() {
   const hideCircle = (circleRef: React.RefObject<HTMLDivElement | null>) => {
     if (circleRef.current) circleRef.current.style.opacity = '0'
   }
+
+  const { user } = usePage().props as {
+    user?: any
+  }
+
+  const isAuth = !!user
 
   return (
     <nav className="mx-auto flex w-fit max-w-full flex-wrap items-stretch justify-center gap-6 md:gap-6 lg:gap-12 p-2 sm:p-3">
@@ -71,6 +79,18 @@ export default function Desktop_navbar() {
         <div className="relative z-10 shrink-0">
           <ThemeToggle />
         </div>
+
+        {isAuth && (
+          <div>
+            <Link
+              href="/logout"
+              method="post"
+              className="cursor-pointer font-medium p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400"
+            >
+              Se déconnecter
+            </Link>
+          </div>
+        )}
 
         <div
           ref={linksCircleRef}
