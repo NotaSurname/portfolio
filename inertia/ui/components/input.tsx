@@ -27,7 +27,7 @@ export default function Input({
   return (
     <div className="flex flex-col gap-1.5">
       {showLabel && (
-        <label htmlFor={id} className="text-sm font-medium text-slate-900 dark:text-white">
+        <label htmlFor={id} className="text-sm font-medium text-slate-900 dark:text-stone-200">
           {labelPlaceholder}
         </label>
       )}

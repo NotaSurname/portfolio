@@ -1,13 +1,56 @@
 import NavBar from '~/ui/components/navbar'
-import Hero from '~/ui/section/hero'
+import Hero from '~/ui/section/hero/hero'
+import LightRays from '~/ui/components/light_rays'
+import About from '~/ui/section/about/about'
 
 export default function Home() {
   return (
-    <>
-      <div className="bg-[#F6F5F2] dark:bg-neutral-800">
+    <div className="relative isolate min-h-screen bg-neutral-950">
+      <div className="relative">
         <NavBar />
-        <Hero firstName="Mathéo Noguès" />
+        <div className="pointer-events-none absolute inset-0 -z-10 hidden w-full lg:block">
+          {/*Desktop UI*/}
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#ffffff"
+            raysSpeed={1}
+            lightSpread={0.5}
+            rayLength={1}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0}
+            distortion={0}
+            className="custom-rays"
+            pulsating={false}
+            fadeDistance={1}
+            saturation={1}
+            lightMode={false}
+          />
+        </div>
+
+        <div className="pointer-events-none absolute inset-0 -z-10 block w-full lg:hidden">
+          {/*Mobile UI*/}
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#ffffff"
+            raysSpeed={1}
+            lightSpread={0.1}
+            rayLength={4}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0}
+            distortion={0}
+            className="custom-rays"
+            pulsating={false}
+            fadeDistance={1}
+            saturation={1}
+            lightMode={false}
+          />
+        </div>
+
+        <Hero />
+        <About />
       </div>
-    </>
+    </div>
   )
 }

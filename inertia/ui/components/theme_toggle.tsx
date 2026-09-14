@@ -37,8 +37,8 @@ export default function ThemeToggle({ type = 'slider' }: Props) {
       type="button"
       onClick={handleClick}
       aria-label="Basculer le thème clair/sombre"
-      className="flex h-9 w-9 items-center justify-center cursor-pointer rounded-lg border
-      border-neutral-500 bg-transparent text-base transition-all duration-200 hover:bg-slate-200 dark:border-neutral-300 dark:hover:bg-white/10"
+      className="flex h-9 w-9 items-center justify-center cursor-pointer rounded-lg
+      bg-transparent text-base transition-all duration-200 hover:bg-slate-200 dark:hover:bg-white/10"
     >
       <span className="select-none">{isDark ? '☀️' : '🌙'}</span>
     </button>

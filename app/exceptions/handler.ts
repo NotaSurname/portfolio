@@ -1,6 +1,7 @@
 import app from '@adonisjs/core/services/app'
 import { type HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
+import { errors } from '@adonisjs/limiter'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
@@ -30,6 +31,16 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    if (error instanceof errors.E_TOO_MANY_REQUESTS) {
+      const message = error.getResponseMessage(ctx)
+      const headers = error.getDefaultHeaders()
+
+      Object.keys(headers).forEach((header) => {
+        ctx.response.header(header, headers[header])
+      })
+
+      return ctx.response.status(error.status).send(message)
+    }
     return super.handle(error, ctx)
   }
 

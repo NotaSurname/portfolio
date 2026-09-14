@@ -1,5 +1,4 @@
 import { useRef, type MouseEvent } from 'react'
-import ThemeToggle from '~/ui/components/theme_toggle'
 import { usePage } from '@inertiajs/react'
 import { Link } from '@adonisjs/inertia/react'
 
@@ -42,14 +41,12 @@ export default function Desktop_navbar() {
         ref={identityRef}
         onMouseMove={(e) => moveCircle(e, identityRef, identityCircleRef)}
         onMouseLeave={() => hideCircle(identityCircleRef)}
-        className="relative flex min-w-fit items-center gap-1.5 overflow-hidden rounded-2xl bg-white dark:bg-black px-4 py-5 sm:gap-3 sm:px-5"
+        className="relative flex min-w-fit items-center gap-1.5 overflow-hidden rounded-2xl bg-transparent border border-white/50 px-4 py-5 sm:gap-3 sm:px-5"
       >
-        <span className="relative z-10 text-sm font-medium text-slate-900 dark:text-white">
-          Logo
-        </span>
+        <span className="relative z-10 text-sm font-medium text-stone-200">Logo</span>
         <div className="relative z-10 flex flex-col leading-tight">
-          <span className="font-semibold text-slate-900 dark:text-white">Mathéo</span>
-          <span className="text-sm text-slate-500 dark:text-white/70">Développeur Web</span>
+          <span className="font-semibold text-stone-200">Mathéo</span>
+          <span className="text-sm text-stone-200/70">Développeur Web</span>
         </div>
 
         <div
@@ -62,30 +59,26 @@ export default function Desktop_navbar() {
         ref={linksRef}
         onMouseMove={(e) => moveCircle(e, linksRef, linksCircleRef)}
         onMouseLeave={() => hideCircle(linksCircleRef)}
-        className="relative flex min-w-fit items-center gap-6 overflow-hidden rounded-2xl bg-white dark:bg-black px-4 py-2 sm:gap-8 sm:px-6"
+        className="relative flex min-w-fit items-center gap-6 overflow-hidden rounded-2xl bg-transparent border border-white/50 px-4 py-2 sm:gap-8 sm:px-6"
       >
-        <ul className="relative z-10 flex flex-wrap items-center gap-4 font-medium text-slate-900 dark:text-white sm:gap-6">
-          <li className="cursor-pointer p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400">
+        <ul className="relative z-10 flex flex-wrap items-center gap-4 font-medium text-stone-200 sm:gap-6">
+          <li className="cursor-pointer p-3 rounded-lg hover:bg-white text-stone-200 hover:text-black transition-all duration-400">
             A propos
           </li>
-          <li className="cursor-pointer p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400">
+          <li className="cursor-pointer p-3 rounded-lg hover:bg-white text-stone-200 hover:text-black transition-all duration-400">
             Mes projets
           </li>
-          <li className="cursor-pointer p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400">
+          <li className="cursor-pointer p-3 rounded-lg hover:bg-white text-stone-200 hover:text-black transition-all duration-400">
             Me contacter
           </li>
         </ul>
-
-        <div className="relative z-10 shrink-0">
-          <ThemeToggle />
-        </div>
 
         {isAuth && (
           <div>
             <Link
               href="/logout"
               method="post"
-              className="cursor-pointer font-medium p-3 rounded-lg hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-400"
+              className="cursor-pointer font-medium p-3 rounded-lg hover:bg-white text-stone-200 hover:text-black transition-all duration-400"
             >
               Se déconnecter
             </Link>
