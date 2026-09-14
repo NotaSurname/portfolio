@@ -18,3 +18,22 @@
   --gray-10: oklch(26.9% 0 0);
   --gray-12: oklch(14.5% 0 0);
 }
+
+@keyframes blob {
+  0%, 100% {
+    border-radius: 42% 58% 65% 35% / 45% 45% 55% 55%;
+  }
+  25% {
+    border-radius: 58% 42% 35% 65% / 55% 62% 38% 45%;
+  }
+  50% {
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+  }
+  75% {
+    border-radius: 33% 67% 58% 42% / 63% 46% 54% 37%;
+  }
+}
+
+.animate-blob {
+  animation: blob 8s ease-in-out infinite;
+}

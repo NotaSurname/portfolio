@@ -7,7 +7,7 @@ export default function NavBar() {
       <div className="hidden md:block">
         <DesktopNavbar />
       </div>
-      <div className="block md:hidden">
+      <div className="block md:hidden pt-3 px-3">
         <MobileNavbar />
       </div>
     </>
