@@ -1,7 +1,6 @@
 import { SiTailwindcss, SiAdonisjs, SiReact, SiPostgresql } from 'react-icons/si'
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
-import { IoMailOutline } from 'react-icons/io5'
 
 const stack = [
   { name: 'Tailwind CSS', icon: SiTailwindcss },
@@ -22,12 +21,6 @@ const socials = [
     icon: FiLinkedin,
     href: 'https://www.linkedin.com/in/MON_PROFIL',
     style: 'hover:text-[#0077b5]',
-  },
-  {
-    name: 'Email',
-    icon: IoMailOutline,
-    href: 'mailto:test@exemple.com',
-    style: 'hover:text-blue-500',
   },
 ]
 
@@ -86,8 +79,8 @@ export default function About() {
             en faire mon métier.
           </p>
           <p className="text-base text-neutral-400 sm:text-lg">
-            Je suis actuellement en Bachelor Développeur Web à l&#39;Efrei, en France, et je suis à
-            la recherche d&#39;un stage pour continuer à progresser sur des projets concrets. Mon
+            Je suis actuellement en Bachelor Développeur à l&#39;Efrei, en France, et je suis à la
+            recherche d&#39;un stage pour continuer à progresser sur des projets concrets. Mon
             objectif : évoluer vers des projets ambitieux et en faire un véritable métier qui me
             permette de vivre de ma passion.
           </p>

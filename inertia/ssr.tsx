@@ -1,6 +1,5 @@
 import { client } from '~/client'
 import { type ReactElement } from 'react'
-import Layout from '~/layouts/default'
 import { type Data } from '@generated/data'
 import ReactDOMServer from 'react-dom/server'
 import { createInertiaApp, type ResolvedComponent } from '@inertiajs/react'
@@ -15,7 +14,7 @@ export default function render(page: any) {
       return resolvePageComponent<ResolvedComponent>(
         `./pages/${name}.tsx`,
         import.meta.glob<ResolvedComponent>('./pages/**/*.tsx', { eager: true }),
-        (resolvedPage: ReactElement<Data.SharedProps>) => <Layout children={resolvedPage} />
+        (resolvedPage: ReactElement<Data.SharedProps>) => <div children={resolvedPage} />
       )
     },
     setup: ({ App, props }) => {
