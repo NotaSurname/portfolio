@@ -1,84 +1,106 @@
 import { SiTailwindcss, SiAdonisjs, SiReact, SiPostgresql } from 'react-icons/si'
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
+import { RiVuejsLine } from 'react-icons/ri'
 
-const stack = [
+const DEFAULT_STACK = [
   { name: 'Tailwind CSS', icon: SiTailwindcss },
   { name: 'AdonisJS', icon: SiAdonisjs },
   { name: 'React', icon: SiReact },
   { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'VueJS', icon: RiVuejsLine },
 ]
 
-const socials = [
+const DEFAULT_SOCIALS = [
   {
     name: 'GitHub',
     icon: TbBrandGithub,
     href: 'https://github.com/MON_PSEUDO',
-    style: 'hover:text-[#24292e]',
+    hoverClass: 'hover:text-white',
   },
   {
     name: 'LinkedIn',
     icon: FiLinkedin,
     href: 'https://www.linkedin.com/in/MON_PROFIL',
-    style: 'hover:text-[#0077b5]',
+    hoverClass: 'hover:text-[#0A96D6]',
   },
 ]
 
-export default function About() {
-  function calculateAge(birthDate: Date): number {
-    const today = new Date()
-    let age = today.getFullYear() - birthDate.getFullYear()
+function calculateAge(birthDate: Date) {
+  const today = new Date()
+  let age = today.getFullYear() - birthDate.getFullYear()
 
-    const hasHadBirthdayThisYear =
-      today.getMonth() > birthDate.getMonth() ||
-      (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate())
+  const hasHadBirthdayThisYear =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate())
 
-    if (!hasHadBirthdayThisYear) {
-      age -= 1
-    }
+  if (!hasHadBirthdayThisYear) age -= 1
 
-    return age
-  }
+  return age
+}
 
-  const BIRTH_DATE = new Date(2007, 10, 19)
-  const age = calculateAge(BIRTH_DATE)
+type StackItem = { name: string; icon: React.ComponentType<{ className?: string }> }
+type SocialItem = {
+  name: string
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  href: string
+  hoverClass?: string
+}
+
+type AboutProps = {
+  name?: string
+  birthDate?: Date
+  stack?: StackItem[]
+  socials?: SocialItem[]
+}
+
+export default function About({
+  name = 'Mathéo',
+  birthDate = new Date(2007, 10, 19),
+  stack = DEFAULT_STACK,
+  socials = DEFAULT_SOCIALS,
+}: AboutProps) {
+  const age = calculateAge(birthDate)
 
   return (
     <section
       id="about"
-      className="mx-auto flex w-full max-w-300 flex-col gap-16 px-4 py-20 sm:px-6 md:gap-24"
+      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 px-4 py-20 sm:px-6 md:gap-20"
     >
-      <div className="flex justify-around items-center">
-        <div className="flex flex-col items-end gap-4 border border-white/70 p-3 rounded-lg">
-          {socials.map(({ name, icon: Icon, href, style }) => (
-            <a
-              key={name}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={name}
-              className="text-stone-400 transition-colors duration-300"
-            >
-              <Icon
-                className={`h-6 w-6 sm:h-12 sm:w-12 ${style} transition-all duration-200 hover:scale-110`}
-                strokeWidth={1.5}
-              />
-            </a>
-          ))}
+      <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-8">
+        <div className="flex w-full items-center gap-4">
+          <h2 className="shrink-0 text-3xl leading-tight font-semibold tracking-tight text-[#EDEAE4] sm:text-4xl">
+            À propos de moi
+          </h2>
+          <div className="h-px flex-1 bg-white/20 sm:h-0.5" />
+          <div className="flex shrink-0 items-center gap-4">
+            {socials.map(({ name: socialName, icon: Icon, href, hoverClass }) => (
+              <a
+                key={socialName}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={socialName}
+                className={`text-[#9C9890] transition-colors duration-200 ${hoverClass ?? ''}`}
+              >
+                <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.5} />
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="mx-auto flex max-w-2xl flex-col gap-4 text-left">
-          <p className="text-base text-neutral-400 sm:text-lg">
-            Salut, je m&#39;appelle Mathéo, je suis un développeur français de {age} ans. Je suis
+        <div className="flex flex-col justify-center gap-5 text-base leading-relaxed text-[#9C9890] sm:text-lg">
+          <p>
+            Salut, je m&#39;appelle {name}, je suis un développeur français de {age} ans. Je suis
             passionné par la programmation et toujours à la recherche de nouveaux défis.
           </p>
-          <p className="text-base text-neutral-400 sm:text-lg">
+          <p>
             Tout a commencé lors de mon stage de troisième, où j&#39;ai créé ma première wishlist en
             HTML, CSS, JavaScript, PHP et MySQL. Ça a été le déclic : j&#39;ai voulu comprendre
             comment tout ça fonctionnait et j&#39;ai continué à apprendre de mon côté, jusqu&#39;à
             en faire mon métier.
           </p>
-          <p className="text-base text-neutral-400 sm:text-lg">
+          <p>
             Je suis actuellement en Bachelor Développeur à l&#39;Efrei, en France, et je suis à la
             recherche d&#39;un stage pour continuer à progresser sur des projets concrets. Mon
             objectif : évoluer vers des projets ambitieux et en faire un véritable métier qui me
@@ -87,19 +109,18 @@ export default function About() {
         </div>
       </div>
 
-      <div>
-        <h3 className="mb-8 text-center text-xl font-semibold sm:text-2xl">Stack technique</h3>
-        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-6 md:grid-cols-7">
-          {stack.map(({ name, icon: Icon }) => (
-            <div
-              key={name}
-              className="flex flex-col items-center gap-2 rounded-xl border p-4 transition-transform duration-300 hover:-translate-y-1 border-white/50"
-            >
-              <Icon className="h-8 w-8 sm:h-10 sm:w-10" />
-              <span className="text-center text-xs sm:text-sm text-neutral-400">{name}</span>
-            </div>
-          ))}
-        </div>
+      <div className="flex w-full max-w-7xl flex-nowrap divide-x divide-white/10 overflow-hidden rounded-md border border-white/10">
+        {stack.map(({ name: techName, icon: Icon }) => (
+          <div
+            key={techName}
+            className="flex min-w-0 flex-1 items-center justify-center gap-2 px-2 py-4 transition-colors duration-200 hover:bg-white/[0.03] sm:justify-start sm:gap-3 sm:px-4"
+          >
+            <Icon className="h-5 w-5 shrink-0 text-[#9C9890] sm:h-6 sm:w-6" />
+            <span className="hidden truncate font-mono text-xs text-[#9C9890] sm:inline sm:text-sm">
+              {techName}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/react'
 import { Link } from '@adonisjs/inertia/react'
 
 const NAV_ITEMS = [
-  { label: 'A propos', href: '#about' },
+  { label: 'À propos', href: '#about' },
   { label: 'Mes projets', href: '#projects' },
   { label: 'Me contacter', href: '#contact' },
 ]
@@ -40,7 +40,6 @@ export default function NavBar() {
               <span className="text-sm text-stone-200/70">Développeur Web</span>
             </div>
           </div>
-
           <ul className="flex flex-wrap items-center gap-1 text-sm font-medium sm:gap-1.5">
             {NAV_ITEMS.map(({ label, href }) => (
               <li key={label} className={linkClasses}>
@@ -49,7 +48,6 @@ export default function NavBar() {
               </li>
             ))}
           </ul>
-
           {isAuth ? (
             <Link href="/logout" method="post" className={authButtonClasses}>
               Se déconnecter
@@ -61,10 +59,9 @@ export default function NavBar() {
           )}
         </div>
       </nav>
-
       {/* Mobile */}
       <div className="md:hidden">
-        <nav className="sticky z-20 flex items-center justify-between px-4 py-3 bg-transparent border-b border-white/50">
+        <nav className="sticky z-20 flex items-center justify-between px-4 py-3 sm:px-6 bg-transparent border-b border-white/50">
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
