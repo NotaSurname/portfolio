@@ -1,3 +1,4 @@
+import { errors as authErrors } from '@adonisjs/auth'
 import app from '@adonisjs/core/services/app'
 import { type HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
@@ -31,6 +32,10 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    if (error instanceof authErrors.E_UNAUTHORIZED_ACCESS) {
+      return ctx.response.redirect('/auth/login')
+    }
+
     if (error instanceof errors.E_TOO_MANY_REQUESTS) {
       const message = error.getResponseMessage(ctx)
       const headers = error.getDefaultHeaders()

@@ -8,14 +8,17 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'check.login': { paramsTuple?: []; params?: {} }
     'logout': { paramsTuple?: []; params?: {} }
+    'projects.index': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'home': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
+    'projects.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'home': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
+    'projects.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'check.login': { paramsTuple?: []; params?: {} }

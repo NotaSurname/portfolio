@@ -1,12 +1,13 @@
-import Hero from '~/ui/section/hero/hero'
+import Hero from '~/ui/components/section/hero/hero'
 import LightRays from '~/ui/components/light_rays'
-import About from '~/ui/section/about/about'
+import About from '~/ui/components/section/about/about'
 import NavBar from '~/ui/components/navbar'
+import Projects from '~/ui/components/section/projects/projects'
 
 export default function Home() {
   return (
     <>
-      <div className="relative isolate min-h-screen bg-neutral-950">
+      <div className="relative isolate min-h-screen bg-neutral-950" id="home">
         <div className="relative">
           <NavBar />
           <div className="pointer-events-none absolute inset-0 -z-10 hidden w-full lg:block">
@@ -16,7 +17,7 @@ export default function Home() {
               raysColor="#ffffff"
               raysSpeed={1}
               lightSpread={0.5}
-              rayLength={1}
+              rayLength={6}
               followMouse={true}
               mouseInfluence={0.1}
               noiseAmount={0}
@@ -51,6 +52,7 @@ export default function Home() {
 
           <Hero />
           <About />
+          <Projects />
         </div>
       </div>
     </>

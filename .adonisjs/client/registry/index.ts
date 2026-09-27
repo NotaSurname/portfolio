@@ -30,6 +30,12 @@ const routes = {
     tokens: [{"old":"/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['logout']['types'],
   },
+  'projects.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/dashboard',
+    tokens: [{"old":"/admin/dashboard","type":0,"val":"admin","end":""},{"old":"/admin/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['projects.index']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
