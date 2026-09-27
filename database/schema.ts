@@ -7,6 +7,45 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class ProjectSchema extends BaseModel {
+  static $columns = [
+    'cardSize',
+    'createdAt',
+    'description',
+    'explanation',
+    'githubUrl',
+    'imageUrl',
+    'order',
+    'projectUrl',
+    'title',
+    'updatedAt',
+    'uuid',
+  ] as const
+  $columns = ProjectSchema.$columns
+  @column()
+  declare cardSize: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare description: string
+  @column()
+  declare explanation: string
+  @column()
+  declare githubUrl: string | null
+  @column()
+  declare imageUrl: string
+  @column()
+  declare order: number
+  @column()
+  declare projectUrl: string | null
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
 export class RateLimitSchema extends BaseModel {
   static $columns = ['expire', 'key', 'points'] as const
   $columns = RateLimitSchema.$columns
@@ -16,6 +55,21 @@ export class RateLimitSchema extends BaseModel {
   declare key: string
   @column()
   declare points: number
+}
+
+export class StackSchema extends BaseModel {
+  static $columns = ['createdAt', 'projectUuid', 'stackName', 'updatedAt', 'uuid'] as const
+  $columns = StackSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare projectUuid: string
+  @column()
+  declare stackName: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
 }
 
 export class UserSchema extends BaseModel {
@@ -30,7 +84,7 @@ export class UserSchema extends BaseModel {
   @column({ serializeAs: null })
   declare password: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+  declare updatedAt: DateTime
   @column({ isPrimary: true })
   declare uuid: string
 }

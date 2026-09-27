@@ -8,5 +8,6 @@
 
 ---
 
-- [ ] Add `<span>{text}</span>` in about section
-- [ ] Fix UI/UX
+## In dashboard
+- [ ] Create sidebar component (Nest style)
+- [ ] Create submenu elements in sidebar (project, users list in case)

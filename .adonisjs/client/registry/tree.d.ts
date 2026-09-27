@@ -10,4 +10,7 @@ export interface ApiDefinition {
     login: typeof routes['check.login']
   }
   logout: typeof routes['logout']
+  projects: {
+    index: typeof routes['projects.index']
+  }
 }

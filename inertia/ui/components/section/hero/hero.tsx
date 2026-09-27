@@ -1,5 +1,5 @@
 import ShinyText from '~/ui/components/shiny_text'
-import BlobImage from '~/ui/section/hero/blob_image'
+import BlobImage from '~/ui/components/section/hero/blob_image'
 import { MapPin } from 'lucide-react'
 
 export default function Hero() {
@@ -25,7 +25,7 @@ export default function Hero() {
             <p className="text-[#357DED] sm:text-2xl md:text-5xl">
               {'Développeur Full-stack'.toUpperCase()}
             </p>
-            <p className="sm:text-md md:text-xl text-stone-200/60">
+            <p className="text-sm sm:text-md md:text-xl text-stone-200/60">
               Développeur web passionné, je conçois et développe des applications web modernes.
             </p>
             <p className="flex items-center gap-1.5 text-sm text-stone-200/60">

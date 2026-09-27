@@ -1,14 +1,23 @@
-import { SiTailwindcss, SiAdonisjs, SiReact, SiPostgresql } from 'react-icons/si'
+import {
+  SiTailwindcss,
+  SiAdonisjs,
+  SiReact,
+  SiPostgresql,
+  SiDocker,
+  SiTypescript,
+} from 'react-icons/si'
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
 import { RiVuejsLine } from 'react-icons/ri'
 
 const DEFAULT_STACK = [
-  { name: 'Tailwind CSS', icon: SiTailwindcss },
   { name: 'AdonisJS', icon: SiAdonisjs },
   { name: 'React', icon: SiReact },
   { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
   { name: 'VueJS', icon: RiVuejsLine },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'TypeScript', icon: SiTypescript },
 ]
 
 const DEFAULT_SOCIALS = [
@@ -65,7 +74,7 @@ export default function About({
   return (
     <section
       id="about"
-      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 px-4 py-20 sm:px-6 md:gap-20"
+      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 px-4 py-20 h-screen sm:px-6 md:gap-20"
     >
       <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-8">
         <div className="flex w-full items-center gap-4">
@@ -109,18 +118,21 @@ export default function About({
         </div>
       </div>
 
-      <div className="flex w-full max-w-7xl flex-nowrap divide-x divide-white/10 overflow-hidden rounded-md border border-white/10">
-        {stack.map(({ name: techName, icon: Icon }) => (
-          <div
-            key={techName}
-            className="flex min-w-0 flex-1 items-center justify-center gap-2 px-2 py-4 transition-colors duration-200 hover:bg-white/[0.03] sm:justify-start sm:gap-3 sm:px-4"
-          >
-            <Icon className="h-5 w-5 shrink-0 text-[#9C9890] sm:h-6 sm:w-6" />
-            <span className="hidden truncate font-mono text-xs text-[#9C9890] sm:inline sm:text-sm">
-              {techName}
-            </span>
-          </div>
-        ))}
+      <div className="flex w-full max-w-7xl flex-wrap items-center gap-8">
+        <p className="leading-tight text-md text-stone-200/90">Mes stacks préférées :</p>
+        <div className="grid w-full grid-cols-2 divide-x divide-y divide-white/10 overflow-hidden rounded-md border border-white/10 sm:flex sm:flex-nowrap sm:divide-y-0">
+          {stack.map(({ name: techName, icon: Icon }) => (
+            <div
+              key={techName}
+              className="flex min-w-0 items-center justify-center gap-2 px-2 py-4 transition-colors duration-200 hover:bg-white/[0.03] sm:flex-1 sm:justify-start sm:gap-3 sm:px-4"
+            >
+              <Icon className="h-5 w-5 shrink-0 text-[#9C9890] sm:h-6 sm:w-6" />
+              <span className="truncate font-mono text-xs text-[#9C9890] sm:inline sm:text-sm">
+                {techName}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
