@@ -65,6 +65,7 @@
     "@adonisjs/auth": "^10.1.0",
     "@adonisjs/core": "^7.5.0",
     "@adonisjs/cors": "^3.0.0",
+    "@adonisjs/drive": "^4.0.0",
     "@adonisjs/inertia": "^5.0.1",
     "@adonisjs/limiter": "^3.0.1",
     "@adonisjs/lucid": "^22.4.2",
@@ -73,6 +74,7 @@
     "@adonisjs/static": "^2.0.1",
     "@adonisjs/vite": "^6.0.1",
     "@inertiajs/react": "^3.7.0",
+    "@jrmc/adonis-attachment": "^5.2.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tuyau/core": "^1.2.2",
     "@vinejs/vine": "^4.4.0",
@@ -88,6 +90,7 @@
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
     "reflect-metadata": "^0.2.2",
+    "sharp": "^0.34.5",
     "sonner": "^2.0.8",
     "tailwindcss": "^4.3.3"
   },

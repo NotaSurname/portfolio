@@ -5,9 +5,13 @@
 - [x] Hidden auth → admin dashboard
 - [x] Errors messages
 - [x] ThemeToggle → new component switch
+- [ ] Changer le bouton connexion -> FR to EN
 
 ---
 
 ## In dashboard
-- [ ] Create sidebar component (Nest style)
-- [ ] Create submenu elements in sidebar (project, users list in case)
+- [x] Create sidebar component (Nest style)
+- [x] Create submenu elements in sidebar (project, users list in case)
+
+## Component
+- [ ] Create ProjectDisplay component

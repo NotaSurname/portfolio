@@ -1,4 +1,3 @@
-// inertia/ui/components/input.tsx
 import type { ChangeEvent, InputHTMLAttributes } from 'react'
 
 type Props = {
@@ -27,7 +26,7 @@ export default function Input({
   return (
     <div className="flex flex-col gap-1.5">
       {showLabel && (
-        <label htmlFor={id} className="text-sm font-medium text-slate-900 dark:text-stone-200">
+        <label htmlFor={id} className="text-sm font-medium text-stone-200">
           {labelPlaceholder}
         </label>
       )}
@@ -38,9 +37,9 @@ export default function Input({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`rounded-xl border bg-slate-50 px-4 py-2.5 text-slate-900 outline-none transition-colors
-        focus:border-slate-900 dark:bg-white/5 dark:text-white dark:focus:border-white
-        ${error ? 'border-red-500' : 'border-slate-200 dark:border-white/10'}`}
+        className={`rounded-xl border px-4 py-2.5 outline-none transition-colors
+        bg-white/5 text-white focus:border-white
+        ${error ? 'border-red-500' : 'border-white/10'}`}
       />
       {error && <span className="text-sm text-red-500">{error}</span>}
     </div>

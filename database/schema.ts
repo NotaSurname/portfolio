@@ -14,7 +14,7 @@ export class ProjectSchema extends BaseModel {
     'description',
     'explanation',
     'githubUrl',
-    'imageUrl',
+    'image',
     'order',
     'projectUrl',
     'title',
@@ -33,7 +33,7 @@ export class ProjectSchema extends BaseModel {
   @column()
   declare githubUrl: string | null
   @column()
-  declare imageUrl: string
+  declare image: any
   @column()
   declare order: number
   @column()

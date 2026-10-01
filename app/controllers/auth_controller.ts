@@ -32,7 +32,7 @@ export default class AuthController {
       }
 
       await auth.use('web').login(user)
-      return response.redirect().toRoute('home')
+      return response.redirect().toRoute('dashboard.index')
     } catch {
       session.flash('error', 'Email ou mot de passe incorrect')
       return response.redirect().back()

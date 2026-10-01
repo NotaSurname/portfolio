@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('title', 255).notNullable()
       table.string('description').notNullable()
       table.text('explanation').notNullable()
-      table.string('image_url').notNullable()
+      table.jsonb('image').notNullable()
       table.string('project_url', 2000)
       table.string('github_url', 2000)
       table.string('card_size').notNullable().defaultTo('normal')
