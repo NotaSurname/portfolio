@@ -1,6 +1,6 @@
 import { Link } from '@adonisjs/inertia/react'
 import { usePage } from '@inertiajs/react'
-import { type LucideIcon, User, FolderCodeIcon } from 'lucide-react'
+import { type LucideIcon, User, FolderCodeIcon, House, X } from 'lucide-react'
 
 type NavItem = {
   name: string
@@ -10,48 +10,88 @@ type NavItem = {
 
 type SideBarProps = {
   items?: NavItem[]
+  isOpen?: boolean
+  onClose?: () => void
 }
 
 const DEFAULT_ITEMS: NavItem[] = [
+  { name: 'Menu principal', href: '/admin/dashboard', icon: House },
   { name: 'Utilisateurs', href: '/admin/dashboard/users', icon: User },
   { name: 'Projets', href: '/admin/dashboard/projects', icon: FolderCodeIcon },
 ]
 
-export default function SideBar({ items = DEFAULT_ITEMS }: SideBarProps) {
+export default function SideBar({ items = DEFAULT_ITEMS, isOpen = true, onClose }: SideBarProps) {
   const { url } = usePage()
+  const path = url.split('?')[0]
+
+  const activeHref = items
+    .map((item) => item.href)
+    .filter((href) => path === href || path.startsWith(`${href}/`))
+    .sort((a, b) => b.length - a.length)[0]
+
+  const handleNavigate = () => {
+    if (window.innerWidth < 640) onClose?.()
+  }
 
   return (
-    <div className="flex w-full flex-row border-b border-white/70 sm:min-h-screen sm:w-60 sm:max-w-60 sm:flex-col sm:border-r sm:border-b-0">
-      <div className="flex min-w-fit items-center gap-1.5 p-5 sm:gap-3">
-        <span className="text-sm font-medium text-stone-200">Logo</span>
-        <div className="hidden flex-col leading-tight sm:flex">
-          <span className="font-semibold text-stone-200">Mathéo</span>
-          <span className="text-sm text-stone-200/70">Développeur Web</span>
-        </div>
-      </div>
+    <>
+      {/* Overlay flouté (mobile uniquement) */}
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 sm:hidden ${
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      />
 
-      <div className="h-0.5 bg-stone-200/70 w-full" />
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 max-w-[80vw] overflow-hidden border-r border-white/70 bg-neutral-950 transition-transform duration-300 sm:static sm:z-auto sm:max-w-none sm:min-h-screen sm:translate-x-0 sm:transition-[width] sm:duration-200 ${
+          isOpen ? 'translate-x-0 sm:w-60' : '-translate-x-full sm:w-0 sm:border-r-0'
+        }`}
+      >
+        <div className="flex h-full w-full flex-col sm:min-h-screen sm:w-60">
+          <div className="flex h-16 items-center justify-between gap-3 border-b-2 border-stone-200/70 px-4">
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-medium text-stone-200">Logo</span>
+              <div className="flex flex-col leading-tight">
+                <span className="text-sm font-semibold text-stone-200">Mathéo</span>
+                <span className="text-xs text-stone-200/70">Développeur Web</span>
+              </div>
+            </div>
 
-      <nav className="flex flex-1 flex-row items-center gap-1 overflow-x-auto px-2 text-white sm:flex-col sm:items-stretch sm:gap-1 sm:overflow-visible sm:px-3 sm:py-4">
-        {items.map(({ name, href, icon: Icon }) => {
-          const isActive = url === href || url.startsWith(`${href}/`)
-
-          return (
-            <Link
-              key={href}
-              href={href}
-              className={`flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm whitespace-nowrap transition-colors duration-200 ${
-                isActive
-                  ? 'bg-white/10 text-white'
-                  : 'text-stone-200/70 hover:bg-white/[0.05] hover:text-stone-200'
-              }`}
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Fermer le menu"
+              className="cursor-pointer rounded-md p-1.5 text-stone-200/70 transition-colors hover:bg-white/10 hover:text-stone-200 sm:hidden"
             >
-              <Icon className="h-4 w-4 shrink-0" />
-              {name}
-            </Link>
-          )
-        })}
-      </nav>
-    </div>
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 py-4 text-white">
+            {items.map(({ name, href, icon: Icon }) => {
+              const isActive = href === activeHref
+
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={handleNavigate}
+                  className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm whitespace-nowrap transition-colors duration-200 ${
+                    isActive
+                      ? 'bg-white/10 text-white'
+                      : 'text-stone-200/70 hover:bg-white/[0.05] hover:text-stone-200'
+                  }`}
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  {name}
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+      </aside>
+    </>
   )
 }

@@ -3,6 +3,8 @@ import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
 import Stack from '#models/stack'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { attachment } from '@jrmc/adonis-attachment'
+import type { Attachment } from '@jrmc/adonis-attachment/types/attachment'
 
 export type CardSize = 'normal' | 'medium' | 'wide'
 
@@ -19,8 +21,8 @@ export default class Project extends BaseModel {
   @column()
   declare explanation: string
 
-  @column()
-  declare imageUrl: string
+  @attachment({ preComputeUrl: true })
+  declare image: Attachment
 
   @column()
   declare projectUrl: string | null

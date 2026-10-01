@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { ExternalLink, Menu, X } from 'lucide-react'
 import { usePage } from '@inertiajs/react'
 import { Link } from '@adonisjs/inertia/react'
 
@@ -51,9 +51,16 @@ export default function NavBar() {
           {isAuth ? (
             <>
               <div className="flex items-center justify-center gap-5">
-                <Link href="/admin/dashboard" method="get" className="text-stone-200">
+                <Link
+                  href="/admin/dashboard"
+                  className="group relative flex items-center gap-1.5 py-1 text-stone-200"
+                  target="_blank"
+                >
                   Dashboard
+                  <ExternalLink className="h-4 w-4 shrink-0" />
+                  <span className="absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-[#357DED] transition-transform duration-300 ease-out group-hover:scale-x-100" />
                 </Link>
+
                 <Link href="/logout" method="post" className={authButtonClasses}>
                   Se déconnecter
                 </Link>
@@ -88,6 +95,7 @@ export default function NavBar() {
                     href="/admin/dashboard"
                     method="get"
                     className="rounded-lg p-2 text-sm text-left font-medium cursor-pointer transition-colors active:bg-white active:text-black text-stone-200 sm:p-3 sm:text-base"
+                    target="_blank"
                   >
                     Dashboard
                   </Link>
