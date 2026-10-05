@@ -17,7 +17,7 @@ export default function Home() {
               raysColor="#ffffff"
               raysSpeed={1}
               lightSpread={0.5}
-              rayLength={6}
+              rayLength={4}
               followMouse={true}
               mouseInfluence={0.1}
               noiseAmount={0}

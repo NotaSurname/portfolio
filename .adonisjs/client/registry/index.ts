@@ -60,6 +60,12 @@ const routes = {
     tokens: [{"old":"/admin/dashboard/projects/create","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/projects/create","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/projects/create","type":0,"val":"projects","end":""},{"old":"/admin/dashboard/projects/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['projects.store']['types'],
   },
+  'projects.destroy': {
+    methods: ["DELETE"],
+    pattern: '/admin/dashboard/projects/:uuid/delete',
+    tokens: [{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"projects","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"delete","end":""}],
+    types: placeholder as Registry['projects.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

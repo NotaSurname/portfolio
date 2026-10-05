@@ -72,7 +72,7 @@ export default function TagInput({
           {tags.map((tag) => (
             <li
               key={tag}
-              className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 py-1 pr-1.5 pl-3 text-sm text-white"
+              className="flex break-all items-center gap-1.5 rounded-full border border-white/10 bg-white/5 py-1 pr-1.5 pl-3 text-sm text-white"
             >
               {tag}
               <button
