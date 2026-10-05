@@ -13,6 +13,7 @@ export type ScannedRoutes = {
     'dashboard.projects': { paramsTuple?: []; params?: {} }
     'dashboard.projects.create': { paramsTuple?: []; params?: {} }
     'projects.store': { paramsTuple?: []; params?: {} }
+    'projects.destroy': { paramsTuple: [ParamValue]; params: {'uuid': ParamValue} }
   }
   GET: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
@@ -34,6 +35,9 @@ export type ScannedRoutes = {
     'check.login': { paramsTuple?: []; params?: {} }
     'logout': { paramsTuple?: []; params?: {} }
     'projects.store': { paramsTuple?: []; params?: {} }
+  }
+  DELETE: {
+    'projects.destroy': { paramsTuple: [ParamValue]; params: {'uuid': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

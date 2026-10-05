@@ -34,4 +34,12 @@ export default class ProjectsController {
 
     return response.redirect().toRoute('dashboard.projects')
   }
+
+  async destroy({ response, params }: HttpContext) {
+    const project = await Project.query().where('uuid', params.uuid).firstOrFail()
+
+    await project.delete()
+
+    return response.redirect().back()
+  }
 }

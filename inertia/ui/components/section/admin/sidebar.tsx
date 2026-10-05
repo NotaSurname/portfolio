@@ -35,7 +35,6 @@ export default function SideBar({ items = DEFAULT_ITEMS, isOpen = true, onClose 
 
   return (
     <>
-      {/* Overlay flouté (mobile uniquement) */}
       <div
         aria-hidden="true"
         onClick={onClose}
@@ -78,13 +77,13 @@ export default function SideBar({ items = DEFAULT_ITEMS, isOpen = true, onClose 
                   key={href}
                   href={href}
                   onClick={handleNavigate}
-                  className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm whitespace-nowrap transition-colors duration-200 ${
+                  className={`flex items-center gap-3.5 rounded-md px-3 py-2 text-md whitespace-nowrap transition-colors duration-200 ${
                     isActive
                       ? 'bg-white/10 text-white'
-                      : 'text-stone-200/70 hover:bg-white/[0.05] hover:text-stone-200'
+                      : 'text-stone-200/70 hover:bg-white/5 hover:text-stone-200'
                   }`}
                 >
-                  <Icon className="h-4 w-4 shrink-0" />
+                  <Icon className="h-5 w-5 shrink-0" />
                   {name}
                 </Link>
               )

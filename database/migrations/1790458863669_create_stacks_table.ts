@@ -12,7 +12,7 @@ export default class extends BaseSchema {
         .references('uuid')
         .inTable('projects')
         .onDelete('CASCADE')
-      table.string('stack_name').notNullable().unique()
+      table.string('stack_name').notNullable()
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').notNullable()

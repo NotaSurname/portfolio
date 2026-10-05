@@ -1,11 +1,22 @@
 import { useForm } from '@inertiajs/react'
-import type { FormEvent } from 'react'
+import { type FormEvent, useEffect } from 'react'
 import Button from '~/ui/components/button'
 import Input from '~/ui/components/input'
 import Textarea from '~/ui/components/textarea'
 import TagInput from '~/ui/components/tag_input'
 import RadioGroup from '~/ui/components/radio_group'
 import ImageUpload from '~/ui/components/image_upload'
+
+const FIELD_ORDER = [
+  'image',
+  'title',
+  'description',
+  'explanation',
+  'stacks',
+  'projectUrl',
+  'githubUrl',
+  'cardSize',
+]
 
 export default function CreateProject() {
   const { data, setData, post, processing, errors } = useForm({
@@ -19,6 +30,25 @@ export default function CreateProject() {
     stacks: [] as string[],
   })
 
+  useEffect(() => {
+    const errorKeys = Object.keys(errors)
+    if (errorKeys.length === 0) return
+
+    const firstField = FIELD_ORDER.find((field) =>
+      errorKeys.some((key) => key === field || key.startsWith(`${field}.`))
+    )
+    if (!firstField) return
+
+    const element =
+      document.getElementById(firstField) ??
+      document.querySelector<HTMLElement>(`[name="${firstField}"]`)
+
+    element?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    element?.focus({ preventScroll: true })
+  }, [errors])
+
+  const stackError = Object.entries(errors).find(([key]) => key.startsWith('stacks'))?.[1]
+
   const CARD_SIZES = [
     { value: 'normal', label: 'Normale', description: 'Petite card' },
     { value: 'medium', label: 'Moyenne', description: 'Card intermédiaire' },
@@ -27,7 +57,9 @@ export default function CreateProject() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    post('/admin/dashboard/projects/create')
+    post('/admin/dashboard/projects/create', {
+      preserveScroll: 'errors',
+    })
   }
 
   return (
@@ -86,7 +118,7 @@ export default function CreateProject() {
             placeholder="React, AdonisJS..."
             tags={data.stacks}
             onChange={(tags) => setData('stacks', tags)}
-            error={errors.stacks}
+            error={stackError}
           />
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

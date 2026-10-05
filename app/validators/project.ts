@@ -35,15 +35,19 @@ createProjectValidator.messagesProvider = new SimpleMessagesProvider(
     'stacks.minLength': 'Ajoute au moins une stack.',
     'stacks.maxLength': 'Tu ne peux pas ajouter plus de {{ max }} stacks.',
     'stacks.distinct': 'Une même stack ne peut pas être ajoutée deux fois.',
+
+    'stacks.*.minLength': 'Le nom d’une stack ne peut pas être vide.',
+    'stacks.*.maxLength': 'Le nom d’une stack ne doit pas dépasser {{ max }} caractères.',
   },
   {
-    title: 'titre',
-    description: 'description',
-    explanation: 'explication',
-    image: 'image',
-    stacks: 'stacks',
-    projectUrl: 'lien du projet',
-    githubUrl: 'lien GitHub',
-    cardSize: 'taille de la card',
+    'title': 'titre',
+    'description': 'description',
+    'explanation': 'explication',
+    'image': 'image',
+    'stacks': 'stacks',
+    'stacks.*': 'nom de stack',
+    'projectUrl': 'lien du projet',
+    'githubUrl': 'lien GitHub',
+    'cardSize': 'taille de la card',
   }
 )

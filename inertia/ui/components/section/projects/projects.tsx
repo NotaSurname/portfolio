@@ -1,19 +1,12 @@
-const PLACEHOLDER_COUNT = 6
+import ProjectCard from '~/ui/components/section/projects/project_card'
+import { usePage } from '@inertiajs/react'
+import { type ProjectData } from '~/types/project'
 
-type ProjectSize = 'normal' | 'medium' | 'wide'
+export default function Projects() {
+  const { projects } = usePage().props as unknown as {
+    projects: ProjectData[]
+  }
 
-type Project = {
-  title?: string
-  size?: ProjectSize
-}
-
-type ProjectsProps = {
-  projects?: Project[]
-}
-
-export default function Projects({
-  projects = Array.from({ length: PLACEHOLDER_COUNT }, () => ({})),
-}: ProjectsProps) {
   return (
     <section
       id="projects"
@@ -28,20 +21,7 @@ export default function Projects({
         </div>
       </div>
 
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className={`flex aspect-video items-center justify-center rounded-md border border-white/10 transition-colors duration-200 hover:bg-white/3 ${
-              project.size === 'wide' ? 'sm:col-span-2 lg:col-span-3' : ''
-            }`}
-          >
-            {project.title && (
-              <span className="font-mono text-sm text-[#9C9890]">{project.title}</span>
-            )}
-          </div>
-        ))}
-      </div>
+      <ProjectCard projects={projects} />
     </section>
   )
 }

@@ -14,4 +14,7 @@
 - [x] Create submenu elements in sidebar (project, users list in case)
 
 ## Component
-- [ ] Create ProjectDisplay component
+- [x] Create ProjectDisplay component
+
+## Error messages
+- [ ] Error not showing when stackName is too long on creation of project

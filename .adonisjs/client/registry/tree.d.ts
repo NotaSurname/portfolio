@@ -23,5 +23,6 @@ export interface ApiDefinition {
   }
   projects: {
     store: typeof routes['projects.store']
+    destroy: typeof routes['projects.destroy']
   }
 }
