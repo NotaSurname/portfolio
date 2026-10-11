@@ -1,6 +1,6 @@
 import { Link } from '@adonisjs/inertia/react'
 import { usePage } from '@inertiajs/react'
-import { type LucideIcon, User, FolderCodeIcon, House, X } from 'lucide-react'
+import { type LucideIcon, FolderCodeIcon, House, X, BriefcaseBusiness } from 'lucide-react'
 
 type NavItem = {
   name: string
@@ -16,8 +16,8 @@ type SideBarProps = {
 
 const DEFAULT_ITEMS: NavItem[] = [
   { name: 'Menu principal', href: '/admin/dashboard', icon: House },
-  { name: 'Utilisateurs', href: '/admin/dashboard/users', icon: User },
   { name: 'Projets', href: '/admin/dashboard/projects', icon: FolderCodeIcon },
+  { name: 'Expériences', href: '/admin/dashboard/experiences', icon: BriefcaseBusiness },
 ]
 
 export default function SideBar({ items = DEFAULT_ITEMS, isOpen = true, onClose }: SideBarProps) {
@@ -83,7 +83,9 @@ export default function SideBar({ items = DEFAULT_ITEMS, isOpen = true, onClose 
                       : 'text-stone-200/70 hover:bg-white/5 hover:text-stone-200'
                   }`}
                 >
-                  <Icon className="h-5 w-5 shrink-0" />
+                  <Icon
+                    className={`h-5 w-5 shrink-0 ${isActive ? 'text-blue-500' : 'text-stone-200/70'}`}
+                  />
                   {name}
                 </Link>
               )

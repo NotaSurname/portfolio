@@ -4,6 +4,7 @@ import { LoaderCircle, Trash2 } from 'lucide-react'
 
 const DELETE_TYPES = {
   project: { modalTitle: 'Supprimer le projet', label: 'le projet' },
+  experience: { modalTitle: "Supprimer l'expérience", label: "l'expérience" },
   text: { modalTitle: 'Supprimer le texte', label: 'ce texte' },
 }
 
@@ -15,7 +16,7 @@ type Props = {
   onConfirm: () => void
   type?: DeleteType
   modalTitle?: string
-  projectTitle: string
+  ObjectTitle: string
   isLoading?: boolean
 }
 
@@ -25,7 +26,7 @@ export default function DeleteModal({
   onConfirm,
   type = 'project',
   modalTitle,
-  projectTitle,
+  ObjectTitle,
   isLoading = false,
 }: Props) {
   const config = DELETE_TYPES[type]
@@ -71,7 +72,7 @@ export default function DeleteModal({
 
         <p className="rounded-lg break-all py-2 font-medium text-stone-200">
           <span className="text-stone-200/70">« </span>
-          {projectTitle}
+          {ObjectTitle}
           <span className="text-stone-200/70"> » ?</span>
         </p>
 

@@ -1,10 +1,6 @@
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 
-export const createProjectValidator = vine.create({
-  image: vine.file({
-    size: '5mb',
-    extnames: ['jpg', 'jpeg', 'png', 'webp'],
-  }),
+const projectFields = {
   title: vine.string().trim().minLength(2).maxLength(255),
   description: vine.string().trim().minLength(10).maxLength(255),
   explanation: vine.string().trim().minLength(20),
@@ -13,9 +9,23 @@ export const createProjectValidator = vine.create({
     .minLength(1)
     .maxLength(20)
     .distinct(),
+  cardSize: vine.enum(['normal', 'medium', 'wide']),
+}
+
+const imageRules = { size: '5mb', extnames: ['jpg', 'jpeg', 'png', 'webp'] }
+
+export const createProjectValidator = vine.create({
+  ...projectFields,
+  image: vine.file(imageRules),
   projectUrl: vine.string().trim().url().maxLength(2000).optional(),
   githubUrl: vine.string().trim().url().maxLength(2000).optional(),
-  cardSize: vine.enum(['normal', 'medium', 'wide']),
+})
+
+export const updateProjectValidator = vine.create({
+  ...projectFields,
+  image: vine.file(imageRules).optional(),
+  projectUrl: vine.string().trim().url().maxLength(2000).nullable(),
+  githubUrl: vine.string().trim().url().maxLength(2000).nullable(),
 })
 
 createProjectValidator.messagesProvider = new SimpleMessagesProvider(
@@ -28,6 +38,7 @@ createProjectValidator.messagesProvider = new SimpleMessagesProvider(
     'enum': 'La valeur choisie pour {{ field }} est invalide.',
     'file.size': "L'image ne doit pas dépasser 5 Mo.",
     'file.extname': "L'image doit être au format JPG, PNG ou WebP.",
+    'array': 'Le champ {{ field }} doit être une liste.',
 
     'title.required': 'Le titre est requis.',
     'image.required': "L'image du projet est requise.",

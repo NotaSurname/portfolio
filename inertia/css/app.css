@@ -40,4 +40,6 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #000;
+  color-scheme: dark;
 }

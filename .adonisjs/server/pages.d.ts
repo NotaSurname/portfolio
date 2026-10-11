@@ -12,8 +12,10 @@ type ExtractProps<T> =
 
 declare module '@adonisjs/inertia/types' {
   export interface InertiaPages {
-    'admin/create/create_project': ExtractProps<(typeof import('../../inertia/pages/admin/create/create_project.tsx'))['default']>
     'admin/dashboard_index': ExtractProps<(typeof import('../../inertia/pages/admin/dashboard_index.tsx'))['default']>
+    'admin/experience': ExtractProps<(typeof import('../../inertia/pages/admin/experience.tsx'))['default']>
+    'admin/form/experience_form': ExtractProps<(typeof import('../../inertia/pages/admin/form/experience_form.tsx'))['default']>
+    'admin/form/project_form': ExtractProps<(typeof import('../../inertia/pages/admin/form/project_form.tsx'))['default']>
     'admin/projects': ExtractProps<(typeof import('../../inertia/pages/admin/projects.tsx'))['default']>
     'auth/login': ExtractProps<(typeof import('../../inertia/pages/auth/login.tsx'))['default']>
     'errors/not_found': ExtractProps<(typeof import('../../inertia/pages/errors/not_found.tsx'))['default']>

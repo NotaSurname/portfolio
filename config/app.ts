@@ -3,7 +3,7 @@ import app from '@adonisjs/core/services/app'
 import { defineConfig } from '@adonisjs/core/http'
 
 /**
- * The app URL can be used in various places where you want to create absolute
+ * The app URL can be used in various places where you want to form absolute
  * URLs to your application. For example, when sending emails, images should
  * use absolute URLs.
  */

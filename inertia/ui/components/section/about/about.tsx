@@ -8,14 +8,12 @@ import {
 } from 'react-icons/si'
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
-import { RiVuejsLine } from 'react-icons/ri'
 
 const DEFAULT_STACK = [
   { name: 'AdonisJS', icon: SiAdonisjs },
   { name: 'React', icon: SiReact },
   { name: 'PostgreSQL', icon: SiPostgresql },
   { name: 'Tailwind CSS', icon: SiTailwindcss },
-  { name: 'VueJS', icon: RiVuejsLine },
   { name: 'Docker', icon: SiDocker },
   { name: 'TypeScript', icon: SiTypescript },
 ]
@@ -31,7 +29,7 @@ const DEFAULT_SOCIALS = [
     name: 'LinkedIn',
     icon: FiLinkedin,
     href: 'https://www.linkedin.com/in/MON_PROFIL',
-    hoverClass: 'hover:text-[#0A96D6]',
+    hoverClass: 'hover:text-sky-500',
   },
 ]
 

@@ -1,5 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { createProjectValidator } from '#validators/project'
+import { createProjectValidator, updateProjectValidator } from '#validators/project'
 import Project from '#models/project'
 import db from '@adonisjs/lucid/services/db'
 import { attachmentManager } from '@jrmc/adonis-attachment'
@@ -11,7 +11,7 @@ export default class ProjectsController {
   }
 
   async create({ inertia }: HttpContext) {
-    return inertia.render('admin/create/create_project', {})
+    return inertia.render('admin/form/project_form', {})
   }
 
   async store({ request, response }: HttpContext) {
@@ -41,5 +41,29 @@ export default class ProjectsController {
     await project.delete()
 
     return response.redirect().back()
+  }
+
+  async edit({ inertia, params }: HttpContext) {
+    const project = await Project.query().where('uuid', params.uuid).preload('stacks').firstOrFail()
+    return inertia.render('admin/form/project_form', {
+      project: project.serialize() as never,
+    })
+  }
+
+  async update({ params, request, response }: HttpContext) {
+    const project = await Project.findOrFail(params.uuid)
+    const { stacks, image, ...data } = await request.validateUsing(updateProjectValidator)
+
+    await db.transaction(async (trx) => {
+      project.useTransaction(trx)
+      project.merge(data)
+      if (image) project.image = await attachmentManager.createFromFile(image)
+      await project.save()
+
+      await project.related('stacks').query().delete()
+      await project.related('stacks').createMany(stacks.map((stackName: string) => ({ stackName })))
+    })
+
+    return response.redirect().toRoute('dashboard.projects')
   }
 }
