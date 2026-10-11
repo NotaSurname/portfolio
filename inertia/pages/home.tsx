@@ -3,6 +3,7 @@ import LightRays from '~/ui/components/light_rays'
 import About from '~/ui/components/section/about/about'
 import NavBar from '~/ui/components/navbar'
 import Projects from '~/ui/components/section/projects/projects'
+import Experience from '~/ui/components/section/experience/experience'
 
 export default function Home() {
   return (
@@ -53,6 +54,7 @@ export default function Home() {
           <Hero />
           <About />
           <Projects />
+          <Experience />
         </div>
       </div>
     </>

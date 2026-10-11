@@ -6,6 +6,7 @@ import { Link } from '@adonisjs/inertia/react'
 const NAV_ITEMS = [
   { label: 'À propos', href: '#about' },
   { label: 'Mes projets', href: '#projects' },
+  { label: 'Mes expériences', href: '#experiences' },
   { label: 'Me contacter', href: '#contact' },
 ]
 
@@ -31,7 +32,7 @@ export default function NavBar() {
   return (
     <>
       {/* Desktop */}
-      <nav className="hidden md:sticky md:block top-0 z-50 w-full overflow-hidden border-b border-white/50 bg-black/60">
+      <nav className="hidden md:sticky md:block top-0 z-50 w-full overflow-hidden border-b border-white/50 bg-black/60 backdrop-blur-xs">
         <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <a className="flex min-w-fit items-center gap-1.5 sm:gap-3" href="#home">
             <span className="text-sm font-medium text-stone-200">Logo</span>

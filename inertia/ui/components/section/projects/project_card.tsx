@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { router } from '@inertiajs/react'
-import { Pencil, Trash2 } from 'lucide-react'
+import { ExternalLink, Pencil, Trash2 } from 'lucide-react'
 import type { ProjectData } from '~/types/project'
 import Button from '~/ui/components/button'
 import BorderGlow from '~/ui/components/border_glow'
 import DeleteModal from '~/ui/components/delete_modal'
+import AboutModal from '~/ui/components/about_modal'
+import { FaGithub } from 'react-icons/fa'
 
 type ProjectsProps = {
   projects?: ProjectData[]
@@ -18,6 +20,7 @@ const SIZE_STYLES: Record<CardSize, string> = {
   medium: 'sm:col-span-2',
   wide: 'sm:col-span-2 lg:col-span-3',
 }
+const CARD_PERF = '[content-visibility:auto] [contain-intrinsic-size:auto_360px]'
 
 const IMAGE_STYLES: Record<CardSize, string> = {
   normal: 'h-48',
@@ -25,10 +28,17 @@ const IMAGE_STYLES: Record<CardSize, string> = {
   wide: 'h-48 lg:h-56',
 }
 
+const GLOW_COLORS = ['#ffffff', '#ffffff', '#ffffff']
+
+const LINK_STYLES =
+  'inline-flex items-center gap-1 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-white transition hover:border-white/20 hover:bg-white/10'
+
 const editUrl = (project: ProjectData) => `/admin/dashboard/projects/${project.uuid}/edit`
 
 export default function ProjectCard({ projects = [], showCustom = false }: ProjectsProps) {
+  const [aboutProject, setAboutProject] = useState<ProjectData | null>(null)
   const [projectToDelete, setProjectToDelete] = useState<ProjectData | null>(null)
+  const isModalOpen = aboutProject !== null || projectToDelete !== null
 
   const handleDelete = (project: ProjectData) => setProjectToDelete(project)
   const closeDeleteModal = () => setProjectToDelete(null)
@@ -51,25 +61,32 @@ export default function ProjectCard({ projects = [], showCustom = false }: Proje
 
   return (
     <>
-      <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        className={`grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 ${
+          isModalOpen ? 'pointer-events-none' : ''
+        }`}
+      >
         {projects.map((project) => (
           <BorderGlow
             key={project.uuid}
-            className={SIZE_STYLES[project.cardSize]}
+            className={`${SIZE_STYLES[project.cardSize]} ${CARD_PERF}`}
             edgeSensitivity={7}
             glowColor="40 80 80"
             backgroundColor="#0a0a0a"
             borderRadius={8}
             glowRadius={61}
-            glowIntensity={0.3}
+            glowIntensity={0.1}
             coneSpread={7}
             animated={false}
-            colors={['#ffffff', '#ffffff', '#ffffff']}
+            colors={GLOW_COLORS}
+            disabled={isModalOpen}
           >
             <article className="flex flex-1 flex-col overflow-hidden rounded-lg">
               <img
                 src={project.image.url}
                 alt={project.title}
+                loading="lazy"
+                decoding="async"
                 className={`w-full shrink-0 object-cover ${IMAGE_STYLES[project.cardSize]}`}
               />
 
@@ -111,7 +128,36 @@ export default function ProjectCard({ projects = [], showCustom = false }: Proje
                     </Button>
                   </>
                 )}
-                <Button variant="secondary" size="sm" fullWidth={false}>
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Code source de ${project.title} sur GitHub`}
+                    className={`${LINK_STYLES}`}
+                  >
+                    <FaGithub className="size-4" />
+                    <span className="hidden sm:inline">GitHub</span>
+                  </a>
+                )}
+                {project.projectUrl && (
+                  <a
+                    href={project.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Voir le projet ${project.title}`}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-transparent text-white hover:bg-white/20 hover:border-white/20 px-3 py-1.5 text-sm transition hover:bg-white/10"
+                  >
+                    <ExternalLink className="size-4" />
+                    <span className="hidden sm:inline">Voir le projet</span>
+                  </a>
+                )}
+                <Button
+                  onClick={() => setAboutProject(project)}
+                  variant="secondary"
+                  size="sm"
+                  fullWidth={false}
+                >
                   En savoir plus
                 </Button>
               </div>
@@ -123,11 +169,17 @@ export default function ProjectCard({ projects = [], showCustom = false }: Proje
       <DeleteModal
         isOpen={projectToDelete !== null}
         type="project"
-        projectTitle={projectToDelete?.title ?? ''}
+        ObjectTitle={projectToDelete?.title ?? ''}
         modalTitle={projectToDelete?.title ?? ''}
         isLoading={isDeleting}
         onClose={closeDeleteModal}
         onConfirm={confirmDelete}
+      />
+
+      <AboutModal
+        isOpen={aboutProject !== null}
+        onClose={() => setAboutProject(null)}
+        project={aboutProject}
       />
     </>
   )

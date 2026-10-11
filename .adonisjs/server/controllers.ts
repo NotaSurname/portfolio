@@ -6,6 +6,7 @@
 export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Dashboard: () => import('#controllers/dashboard_controller'),
+  Experiences: () => import('#controllers/experiences_controller'),
   Home: () => import('#controllers/home_controller'),
   Projects: () => import('#controllers/projects_controller'),
 }

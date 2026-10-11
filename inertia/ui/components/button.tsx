@@ -13,7 +13,7 @@ type Props = {
 }
 
 const BASE_STYLES =
-  'inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-xl font-medium transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 [&>svg]:shrink-0'
+  'inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-lg font-medium transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 [&>svg]:shrink-0'
 
 const SIZE_STYLES = {
   sm: 'gap-1.5 px-3 py-1.5 text-xs sm:text-sm [&>svg]:size-3.5 sm:[&>svg]:size-4',

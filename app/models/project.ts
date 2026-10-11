@@ -1,10 +1,10 @@
 import { BaseModel, beforeCreate, column, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
-import Stack from '#models/stack'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { attachment } from '@jrmc/adonis-attachment'
 import type { Attachment } from '@jrmc/adonis-attachment/types/attachment'
+import ProjectStack from '#models/stack'
 
 export type CardSize = 'normal' | 'medium' | 'wide'
 
@@ -47,6 +47,6 @@ export default class Project extends BaseModel {
     project.uuid = randomUUID()
   }
 
-  @hasMany(() => Stack, { foreignKey: 'projectUuid' })
-  declare stacks: HasMany<typeof Stack>
+  @hasMany(() => ProjectStack, { foreignKey: 'projectUuid' })
+  declare stacks: HasMany<typeof ProjectStack>
 }

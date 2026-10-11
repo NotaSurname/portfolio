@@ -17,25 +17,25 @@ export default function Modal({ isOpen, onClose, modalTitle, icon, children, foo
   useEffect(() => {
     if (!isOpen) return
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
-    }
+    const { body, documentElement } = document
+    const scrollbarWidth = window.innerWidth - documentElement.clientWidth
+    const prevOverflow = body.style.overflow
+    const prevPaddingRight = body.style.paddingRight
 
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('keyup', handleKeyDown)
+    body.style.overflow = 'hidden'
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`
 
     return () => {
-      document.body.style.overflow = previousOverflow
-      document.removeEventListener('keyup', handleKeyDown)
+      body.style.overflow = prevOverflow
+      body.style.paddingRight = prevPaddingRight
     }
-  }, [isOpen, onClose])
+  }, [isOpen])
 
   if (!isOpen) return null
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 "
       onClick={onClose}
     >
       <div

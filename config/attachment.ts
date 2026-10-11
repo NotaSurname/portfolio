@@ -86,7 +86,7 @@ const attachmentConfig = defineConfig({
        * pdf : @jrmc/adonis-attachment/converters/pdf_thumbnail_converter
        * document : @jrmc/adonis-attachment/converters/document_thumbnail_converter
        * video : @jrmc/adonis-attachment/converters/video_thumbnail_converter
-       * create your custom converter : https://adonis-attachment.jrmc.dev/guide/advanced_usage/custom-converter
+       * form your custom converter : https://adonis-attachment.jrmc.dev/guide/advanced_usage/custom-converter
        */
       // converter: () => import('@jrmc/adonis-attachment/converters/autodetect_converter'),
 

@@ -4,7 +4,7 @@ import { BaseModel, column, belongsTo, beforeCreate } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Project from '#models/project'
 
-export default class Stack extends BaseModel {
+export default class ProjectStack extends BaseModel {
   @column({ isPrimary: true })
   declare uuid: string
 
@@ -24,7 +24,7 @@ export default class Stack extends BaseModel {
   declare project: BelongsTo<typeof Project>
 
   @beforeCreate()
-  static assignUuid(stack: Stack) {
+  static assignUuid(stack: ProjectStack) {
     stack.uuid = randomUUID()
   }
 }

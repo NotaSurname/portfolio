@@ -1,20 +1,7 @@
 - [ ] In dashboard → project (CRUD), change main picture
-- [x] Rate limit on login page
-- [x] NPM Install & config PostgreSQL
-- [x] Create login page (no register)
-- [x] Hidden auth → admin dashboard
-- [x] Errors messages
-- [x] ThemeToggle → new component switch
-- [ ] Changer le bouton connexion -> FR to EN
+- [ ] Changer le bouton connexion → FR to EN (i18)
 
 ---
 
 ## In dashboard
-- [x] Create sidebar component (Nest style)
-- [x] Create submenu elements in sidebar (project, users list in case)
-
-## Component
-- [x] Create ProjectDisplay component
-
-## Error messages
-- [ ] Error not showing when stackName is too long on creation of project
+- [x] Add delete & edit for experience

@@ -60,11 +60,65 @@ const routes = {
     tokens: [{"old":"/admin/dashboard/projects/create","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/projects/create","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/projects/create","type":0,"val":"projects","end":""},{"old":"/admin/dashboard/projects/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['projects.store']['types'],
   },
+  'dashboard.projects.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/dashboard/projects/:uuid/edit',
+    tokens: [{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"projects","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['dashboard.projects.edit']['types'],
+  },
+  'projects.update': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/projects/:uuid/edit',
+    tokens: [{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"projects","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/projects/:uuid/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['projects.update']['types'],
+  },
   'projects.destroy': {
     methods: ["DELETE"],
     pattern: '/admin/dashboard/projects/:uuid/delete',
     tokens: [{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"projects","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/projects/:uuid/delete","type":0,"val":"delete","end":""}],
     types: placeholder as Registry['projects.destroy']['types'],
+  },
+  'dashboard.experiences.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/dashboard/experiences',
+    tokens: [{"old":"/admin/dashboard/experiences","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experiences","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experiences","type":0,"val":"experiences","end":""}],
+    types: placeholder as Registry['dashboard.experiences.show']['types'],
+  },
+  'dashboard.experience.create': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/dashboard/experience/create',
+    tokens: [{"old":"/admin/dashboard/experience/create","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/create","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/create","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['dashboard.experience.create']['types'],
+  },
+  'experiences.store': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/experience/create',
+    tokens: [{"old":"/admin/dashboard/experience/create","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/create","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/create","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['experiences.store']['types'],
+  },
+  'experiences.reorder': {
+    methods: ["PUT"],
+    pattern: '/admin/dashboard/experience/reorder',
+    tokens: [{"old":"/admin/dashboard/experience/reorder","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/reorder","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/reorder","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/reorder","type":0,"val":"reorder","end":""}],
+    types: placeholder as Registry['experiences.reorder']['types'],
+  },
+  'dashboard.experience.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/dashboard/experience/:uuid/edit',
+    tokens: [{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['dashboard.experience.edit']['types'],
+  },
+  'experiences.update': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/experience/:uuid/edit',
+    tokens: [{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/experience/:uuid/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['experiences.update']['types'],
+  },
+  'experiences.destroy': {
+    methods: ["DELETE"],
+    pattern: '/admin/dashboard/experience/:uuid/delete',
+    tokens: [{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"delete","end":""}],
+    types: placeholder as Registry['experiences.destroy']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

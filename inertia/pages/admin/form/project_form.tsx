@@ -6,6 +6,7 @@ import Textarea from '~/ui/components/textarea'
 import TagInput from '~/ui/components/tag_input'
 import RadioGroup from '~/ui/components/radio_group'
 import ImageUpload from '~/ui/components/image_upload'
+import { type ProjectData } from '~/types/project'
 
 const FIELD_ORDER = [
   'image',
@@ -18,17 +19,37 @@ const FIELD_ORDER = [
   'cardSize',
 ]
 
-export default function CreateProject() {
+type Props = { project?: ProjectData }
+
+const CARD_SIZES = [
+  { value: 'normal', label: 'Normale', description: 'Petite card' },
+  { value: 'medium', label: 'Moyenne', description: 'Card intermédiaire' },
+  { value: 'wide', label: 'Large', description: 'Pleine largeur' },
+]
+
+export default function ProjectForm({ project }: Props) {
+  const isEdit = !!project
+
   const { data, setData, post, processing, errors } = useForm({
     image: null as File | null,
-    title: '',
-    description: '',
-    explanation: '',
-    projectUrl: '',
-    githubUrl: '',
-    cardSize: 'normal',
-    stacks: [] as string[],
+    title: project?.title ?? '',
+    description: project?.description ?? '',
+    explanation: project?.explanation ?? '',
+    projectUrl: project?.projectUrl ?? '',
+    githubUrl: project?.githubUrl ?? '',
+    cardSize: (project?.cardSize ?? 'normal') as string,
+    stacks: project?.stacks?.map((stack) => stack.stackName) ?? [],
   })
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    post(
+      project
+        ? `/admin/dashboard/projects/${project.uuid}/edit`
+        : '/admin/dashboard/projects/create',
+      { preserveScroll: 'errors' }
+    )
+  }
 
   useEffect(() => {
     const errorKeys = Object.keys(errors)
@@ -49,26 +70,17 @@ export default function CreateProject() {
 
   const stackError = Object.entries(errors).find(([key]) => key.startsWith('stacks'))?.[1]
 
-  const CARD_SIZES = [
-    { value: 'normal', label: 'Normale', description: 'Petite card' },
-    { value: 'medium', label: 'Moyenne', description: 'Card intermédiaire' },
-    { value: 'wide', label: 'Large', description: 'Pleine largeur' },
-  ]
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    post('/admin/dashboard/projects/create', {
-      preserveScroll: 'errors',
-    })
-  }
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-neutral-950 px-4 py-8 sm:py-12">
       <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-white/3 p-5 shadow-2xl shadow-black/40 sm:p-8">
         <div className="mb-6 text-center sm:mb-8">
-          <h1 className="text-2xl font-semibold text-white sm:text-3xl">Création de projet</h1>
+          <h1 className="text-2xl font-semibold text-white sm:text-3xl">
+            {isEdit ? 'Modifier le projet' : 'Création de projet'}
+          </h1>
           <p className="mt-2 text-sm text-stone-200/60">
-            Renseigne les informations de ton nouveau projet.
+            {isEdit
+              ? 'Modifier les informations du projet.'
+              : 'Renseigne les informations de ton nouveau projet.'}
           </p>
         </div>
 
@@ -77,6 +89,7 @@ export default function CreateProject() {
             id="image"
             labelPlaceholder="Image du projet"
             file={data.image}
+            currentUrl={project?.image?.url}
             onChange={(file) => setData('image', file)}
             error={errors.image}
           />
@@ -166,7 +179,13 @@ export default function CreateProject() {
               disabled={processing}
               className="w-full sm:w-auto"
             >
-              {processing ? 'Création...' : 'Créer le projet'}
+              {processing
+                ? isEdit
+                  ? 'Enregistrement...'
+                  : 'Création...'
+                : isEdit
+                  ? 'Enregistrer'
+                  : 'Créer le projet'}
             </Button>
           </div>
         </form>

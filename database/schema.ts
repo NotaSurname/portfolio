@@ -7,6 +7,69 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class ExperienceStackSchema extends BaseModel {
+  static $columns = ['createdAt', 'experienceUuid', 'stackName', 'updatedAt', 'uuid'] as const
+  $columns = ExperienceStackSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare experienceUuid: string
+  @column()
+  declare stackName: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
+export class ExperienceSchema extends BaseModel {
+  static $columns = [
+    'company',
+    'createdAt',
+    'description',
+    'location',
+    'order',
+    'period',
+    'role',
+    'updatedAt',
+    'uuid',
+  ] as const
+  $columns = ExperienceSchema.$columns
+  @column()
+  declare company: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare description: string
+  @column()
+  declare location: string
+  @column()
+  declare order: number
+  @column()
+  declare period: string
+  @column()
+  declare role: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
+export class ProjectStackSchema extends BaseModel {
+  static $columns = ['createdAt', 'projectUuid', 'stackName', 'updatedAt', 'uuid'] as const
+  $columns = ProjectStackSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare projectUuid: string
+  @column()
+  declare stackName: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
 export class ProjectSchema extends BaseModel {
   static $columns = [
     'cardSize',
@@ -55,21 +118,6 @@ export class RateLimitSchema extends BaseModel {
   declare key: string
   @column()
   declare points: number
-}
-
-export class StackSchema extends BaseModel {
-  static $columns = ['createdAt', 'projectUuid', 'stackName', 'updatedAt', 'uuid'] as const
-  $columns = StackSchema.$columns
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column()
-  declare projectUuid: string
-  @column()
-  declare stackName: string
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime
-  @column({ isPrimary: true })
-  declare uuid: string
 }
 
 export class UserSchema extends BaseModel {
