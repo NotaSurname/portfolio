@@ -6,11 +6,9 @@ const loginValidatorMessages = new SimpleMessagesProvider({
   'password.required': 'Le mot de passe est nécessaire',
 })
 
-export const loginValidator = vine.compile(
-  vine.object({
-    email: vine.string().email(),
-    password: vine.string(),
-  })
-)
+export const loginValidator = vine.create({
+  email: vine.string().email(),
+  password: vine.string(),
+})
 
 loginValidator.messagesProvider = loginValidatorMessages

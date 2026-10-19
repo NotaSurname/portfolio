@@ -8,6 +8,8 @@ import {
 } from 'react-icons/si'
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
+import { usePage } from '@inertiajs/react'
+import type { AboutParagraphData } from '~/types/about'
 
 const DEFAULT_STACK = [
   { name: 'AdonisJS', icon: SiAdonisjs },
@@ -67,12 +69,19 @@ export default function About({
   stack = DEFAULT_STACK,
   socials = DEFAULT_SOCIALS,
 }: AboutProps) {
+  const { paragraphs } = usePage().props as unknown as {
+    paragraphs: AboutParagraphData[]
+  }
+
   const age = calculateAge(birthDate)
+
+  const fillPlaceholders = (text: string) =>
+    text.replace(/\{name}/g, name).replace(/\{age}/g, String(age))
 
   return (
     <section
       id="about"
-      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 px-4 py-20 h-screen sm:px-6 md:gap-20"
+      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 px-4 py-20 min-h-screen sm:px-6 md:gap-20"
     >
       <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-8">
         <div className="flex w-full items-center gap-4">
@@ -96,24 +105,15 @@ export default function About({
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-5 text-base leading-relaxed text-[#9C9890] sm:text-lg">
-          <p>
-            Salut, je m&#39;appelle {name}, je suis un développeur français de {age} ans. Je suis
-            passionné par la programmation et toujours à la recherche de nouveaux défis.
-          </p>
-          <p>
-            Tout a commencé lors de mon stage de troisième, où j&#39;ai créé ma première wishlist en
-            HTML, CSS, JavaScript, PHP et MySQL. Ça a été le déclic : j&#39;ai voulu comprendre
-            comment tout ça fonctionnait et j&#39;ai continué à apprendre de mon côté, jusqu&#39;à
-            en faire mon métier.
-          </p>
-          <p>
-            Je suis actuellement en Bachelor Développeur à l&#39;Efrei, en France, et je suis à la
-            recherche d&#39;un stage pour continuer à progresser sur des projets concrets. Mon
-            objectif : évoluer vers des projets ambitieux et en faire un véritable métier qui me
-            permette de vivre de ma passion.
-          </p>
-        </div>
+        {paragraphs.length > 0 && (
+          <div className="flex flex-col justify-center gap-5 text-base leading-relaxed text-[#9C9890] sm:text-lg">
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph.uuid} className="whitespace-pre-line">
+                {fillPlaceholders(paragraph.content)}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex w-full max-w-7xl flex-wrap items-center gap-8">

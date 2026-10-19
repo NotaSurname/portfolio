@@ -16,7 +16,12 @@ export interface ApiDefinition {
   }
   logout: typeof routes['logout']
   dashboard: {
-    index: typeof routes['dashboard.index']
+    about: {
+      show: typeof routes['dashboard.about.show']
+    }
+    heroStatus: {
+      update: typeof routes['dashboard.hero_status.update']
+    }
     projects: typeof routes['dashboard.projects'] & {
       create: typeof routes['dashboard.projects.create']
       edit: typeof routes['dashboard.projects.edit']
@@ -28,6 +33,20 @@ export interface ApiDefinition {
       create: typeof routes['dashboard.experience.create']
       edit: typeof routes['dashboard.experience.edit']
     }
+    users: {
+      show: typeof routes['dashboard.users.show']
+      store: typeof routes['dashboard.users.store']
+    }
+    user: {
+      update: typeof routes['dashboard.user.update']
+      destroy: typeof routes['dashboard.user.destroy']
+    }
+  }
+  about: {
+    store: typeof routes['about.store']
+    update: typeof routes['about.update']
+    reorder: typeof routes['about.reorder']
+    destroy: typeof routes['about.destroy']
   }
   projects: {
     store: typeof routes['projects.store']
@@ -39,5 +58,8 @@ export interface ApiDefinition {
     reorder: typeof routes['experiences.reorder']
     update: typeof routes['experiences.update']
     destroy: typeof routes['experiences.destroy']
+  }
+  contact: {
+    store: typeof routes['contact.store']
   }
 }

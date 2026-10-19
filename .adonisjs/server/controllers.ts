@@ -4,9 +4,12 @@
  */
 
 export const controllers = {
+  About: () => import('#controllers/about_controller'),
   Auth: () => import('#controllers/auth_controller'),
-  Dashboard: () => import('#controllers/dashboard_controller'),
+  Contact: () => import('#controllers/contact_controller'),
   Experiences: () => import('#controllers/experiences_controller'),
+  HeroStatuses: () => import('#controllers/hero_statuses_controller'),
   Home: () => import('#controllers/home_controller'),
   Projects: () => import('#controllers/projects_controller'),
+  Users: () => import('#controllers/users_controller'),
 }

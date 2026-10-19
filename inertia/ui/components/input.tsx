@@ -1,4 +1,5 @@
 import type { ChangeEvent, InputHTMLAttributes } from 'react'
+import CharCounter from '~/ui/components/char_counter'
 
 type Props = {
   type: string
@@ -10,6 +11,8 @@ type Props = {
   value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   error?: string
+  required?: boolean
+  maxChars?: number
 }
 
 export default function Input({
@@ -22,12 +25,19 @@ export default function Input({
   value,
   onChange,
   error,
+  required = false,
+  maxChars,
 }: Props) {
   return (
     <div className="flex flex-col gap-1.5">
       {showLabel && (
-        <label htmlFor={id} className="text-sm font-medium text-stone-200">
+        <label htmlFor={id} className="text-sm font-medium text-stone-200 flex gap-1">
           {labelPlaceholder}
+          {required && (
+            <span className="text-red-500" aria-hidden>
+              *
+            </span>
+          )}
         </label>
       )}
       <input
@@ -41,7 +51,14 @@ export default function Input({
         bg-white/5 text-white focus:border-white
         ${error ? 'border-red-500' : 'border-white/10'}`}
       />
-      {error && <span className="text-sm text-red-500">{error}</span>}
+      {(error || maxChars !== undefined) && (
+        <div className="flex items-start justify-between gap-2">
+          {error && <span className="text-sm text-red-500">{error}</span>}
+          {maxChars !== undefined && (
+            <CharCounter current={value.length} max={maxChars} className="ml-auto shrink-0" />
+          )}
+        </div>
+      )}
     </div>
   )
 }

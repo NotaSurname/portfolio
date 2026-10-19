@@ -6,6 +6,7 @@ const DELETE_TYPES = {
   project: { modalTitle: 'Supprimer le projet', label: 'le projet' },
   experience: { modalTitle: "Supprimer l'expérience", label: "l'expérience" },
   text: { modalTitle: 'Supprimer le texte', label: 'ce texte' },
+  user: { modalTitle: "Supprimer l'utilisateur", label: "l'utilisateur" },
 }
 
 type DeleteType = keyof typeof DELETE_TYPES // keyof = 'project' | 'text'

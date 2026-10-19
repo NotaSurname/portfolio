@@ -3,7 +3,7 @@ import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 const projectFields = {
   title: vine.string().trim().minLength(2).maxLength(255),
   description: vine.string().trim().minLength(10).maxLength(255),
-  explanation: vine.string().trim().minLength(20),
+  explanation: vine.string().trim().minLength(20).maxLength(2000),
   stacks: vine
     .array(vine.string().trim().minLength(1).maxLength(50))
     .minLength(1)

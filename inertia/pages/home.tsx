@@ -4,6 +4,8 @@ import About from '~/ui/components/section/about/about'
 import NavBar from '~/ui/components/navbar'
 import Projects from '~/ui/components/section/projects/projects'
 import Experience from '~/ui/components/section/experience/experience'
+import Contact from '~/ui/components/section/contact/contact'
+import Footer from '~/ui/components/section/footer/footer'
 
 export default function Home() {
   return (
@@ -55,6 +57,8 @@ export default function Home() {
           <About />
           <Projects />
           <Experience />
+          <Contact />
+          <Footer />
         </div>
       </div>
     </>

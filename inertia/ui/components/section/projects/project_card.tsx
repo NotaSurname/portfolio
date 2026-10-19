@@ -56,7 +56,11 @@ export default function ProjectCard({ projects = [], showCustom = false }: Proje
   }
 
   if (projects.length === 0) {
-    return <p className="py-12 text-center text-stone-200/60">Aucun projet pour le moment.</p>
+    return (
+      <p className="rounded-lg border border-dashed border-white/10 p-6 text-center text-stone-200/60">
+        Aucun projet pour le moment.
+      </p>
+    )
   }
 
   return (

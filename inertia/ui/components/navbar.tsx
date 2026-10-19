@@ -33,9 +33,8 @@ export default function NavBar() {
     <>
       {/* Desktop */}
       <nav className="hidden md:sticky md:block top-0 z-50 w-full overflow-hidden border-b border-white/50 bg-black/60 backdrop-blur-xs">
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 py-3 ">
           <a className="flex min-w-fit items-center gap-1.5 sm:gap-3" href="#home">
-            <span className="text-sm font-medium text-stone-200">Logo</span>
             <div className="flex flex-col leading-tight">
               <span className="font-semibold text-stone-200">Mathéo</span>
               <span className="text-sm text-stone-200/70">Développeur Web</span>
@@ -53,7 +52,7 @@ export default function NavBar() {
             <>
               <div className="flex items-center justify-center gap-5">
                 <Link
-                  href="/admin/dashboard"
+                  href="/admin/dashboard/about"
                   className="group relative flex items-center gap-1.5 py-1 text-stone-200"
                   target="_blank"
                 >

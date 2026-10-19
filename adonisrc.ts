@@ -31,6 +31,7 @@ export default defineConfig({
     () => import('@adonisjs/session/commands'),
     () => import('@adonisjs/inertia/commands'),
     () => import('@jrmc/adonis-attachment/commands'),
+    () => import('@adonisjs/mail/commands'),
   ],
 
   /*
@@ -63,6 +64,7 @@ export default defineConfig({
     () => import('@adonisjs/limiter/limiter_provider'),
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@jrmc/adonis-attachment/attachment_provider'),
+    () => import('@adonisjs/mail/mail_provider'),
   ],
 
   /*

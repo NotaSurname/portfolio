@@ -1,4 +1,4 @@
-- [ ] In dashboard → project (CRUD), change main picture
+- [x] In dashboard → project (CRUD), change main picture
 - [ ] Changer le bouton connexion → FR to EN (i18)
 
 ---
