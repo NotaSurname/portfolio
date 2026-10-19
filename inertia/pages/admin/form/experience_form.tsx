@@ -17,6 +17,8 @@ const FIELD_ORDER = [
   'cardSize',
 ]
 
+const LIMITS = { role: 255, company: 255, location: 255, period: 255, description: 1000 }
+
 type Props = {
   experience?: ExperienceData
 }
@@ -85,6 +87,7 @@ export default function CreateProject({ experience }: Props) {
             value={data.role}
             onChange={(e) => setData('role', e.target.value)}
             error={errors.role}
+            maxChars={LIMITS.role}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -96,6 +99,7 @@ export default function CreateProject({ experience }: Props) {
               value={data.company}
               onChange={(e) => setData('company', e.target.value)}
               error={errors.company}
+              maxChars={LIMITS.company}
             />
 
             <Input
@@ -106,6 +110,7 @@ export default function CreateProject({ experience }: Props) {
               value={data.location}
               onChange={(e) => setData('location', e.target.value)}
               error={errors.location}
+              maxChars={LIMITS.location}
             />
           </div>
 
@@ -117,6 +122,7 @@ export default function CreateProject({ experience }: Props) {
             value={data.period}
             onChange={(e) => setData('period', e.target.value)}
             error={errors.period}
+            maxChars={LIMITS.period}
           />
 
           <Textarea
@@ -127,6 +133,7 @@ export default function CreateProject({ experience }: Props) {
             value={data.description}
             onChange={(e) => setData('description', e.target.value)}
             error={errors.description}
+            maxChars={LIMITS.description}
           />
 
           <TagInput

@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react'
+import CharCounter from '~/ui/components/char_counter'
 
 type Props = {
   placeholder?: string
@@ -9,6 +10,8 @@ type Props = {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   error?: string
   className?: string
+  required?: boolean
+  maxChars?: number
 }
 
 export default function Textarea({
@@ -20,12 +23,19 @@ export default function Textarea({
   onChange,
   error,
   className = '',
+  required = false,
+  maxChars,
 }: Props) {
   return (
     <div className="flex flex-col gap-1.5">
       {labelPlaceholder && (
-        <label htmlFor={id} className="text-sm font-medium text-stone-200">
+        <label htmlFor={id} className="text-sm font-medium text-stone-200 flex gap-1">
           {labelPlaceholder}
+          {required && (
+            <span className="text-red-500" aria-hidden>
+              *
+            </span>
+          )}
         </label>
       )}
       <textarea
@@ -38,7 +48,14 @@ export default function Textarea({
           error ? 'border-red-500' : 'border-white/10'
         } ${className}`}
       />
-      {error && <span className="text-sm text-red-500">{error}</span>}
+      {(error || maxChars !== undefined) && (
+        <div className="flex items-start justify-between gap-2">
+          {error && <span className="text-sm text-red-500">{error}</span>}
+          {maxChars !== undefined && (
+            <CharCounter current={value.length} max={maxChars} className="ml-auto shrink-0" />
+          )}
+        </div>
+      )}
     </div>
   )
 }

@@ -36,11 +36,41 @@ const routes = {
     tokens: [{"old":"/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['logout']['types'],
   },
-  'dashboard.index': {
+  'dashboard.about.show': {
     methods: ["GET","HEAD"],
-    pattern: '/admin/dashboard',
-    tokens: [{"old":"/admin/dashboard","type":0,"val":"admin","end":""},{"old":"/admin/dashboard","type":0,"val":"dashboard","end":""}],
-    types: placeholder as Registry['dashboard.index']['types'],
+    pattern: '/admin/dashboard/about',
+    tokens: [{"old":"/admin/dashboard/about","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/about","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/about","type":0,"val":"about","end":""}],
+    types: placeholder as Registry['dashboard.about.show']['types'],
+  },
+  'dashboard.hero_status.update': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/hero-status',
+    tokens: [{"old":"/admin/dashboard/hero-status","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/hero-status","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/hero-status","type":0,"val":"hero-status","end":""}],
+    types: placeholder as Registry['dashboard.hero_status.update']['types'],
+  },
+  'about.store': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/about-paragraph/create',
+    tokens: [{"old":"/admin/dashboard/about-paragraph/create","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/about-paragraph/create","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/about-paragraph/create","type":0,"val":"about-paragraph","end":""},{"old":"/admin/dashboard/about-paragraph/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['about.store']['types'],
+  },
+  'about.update': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/about-paragraph/:uuid/edit',
+    tokens: [{"old":"/admin/dashboard/about-paragraph/:uuid/edit","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/edit","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/edit","type":0,"val":"about-paragraph","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/edit","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['about.update']['types'],
+  },
+  'about.reorder': {
+    methods: ["PUT"],
+    pattern: '/admin/dashboard/about-paragraph/reorder',
+    tokens: [{"old":"/admin/dashboard/about-paragraph/reorder","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/about-paragraph/reorder","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/about-paragraph/reorder","type":0,"val":"about-paragraph","end":""},{"old":"/admin/dashboard/about-paragraph/reorder","type":0,"val":"reorder","end":""}],
+    types: placeholder as Registry['about.reorder']['types'],
+  },
+  'about.destroy': {
+    methods: ["DELETE"],
+    pattern: '/admin/dashboard/about-paragraph/:uuid/delete',
+    tokens: [{"old":"/admin/dashboard/about-paragraph/:uuid/delete","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/delete","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/delete","type":0,"val":"about-paragraph","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/delete","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/about-paragraph/:uuid/delete","type":0,"val":"delete","end":""}],
+    types: placeholder as Registry['about.destroy']['types'],
   },
   'dashboard.projects': {
     methods: ["GET","HEAD"],
@@ -119,6 +149,36 @@ const routes = {
     pattern: '/admin/dashboard/experience/:uuid/delete',
     tokens: [{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"experience","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/experience/:uuid/delete","type":0,"val":"delete","end":""}],
     types: placeholder as Registry['experiences.destroy']['types'],
+  },
+  'dashboard.users.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/dashboard/users',
+    tokens: [{"old":"/admin/dashboard/users","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/users","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/users","type":0,"val":"users","end":""}],
+    types: placeholder as Registry['dashboard.users.show']['types'],
+  },
+  'dashboard.users.store': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/user/create',
+    tokens: [{"old":"/admin/dashboard/user/create","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/user/create","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/user/create","type":0,"val":"user","end":""},{"old":"/admin/dashboard/user/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['dashboard.users.store']['types'],
+  },
+  'dashboard.user.update': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/user/:uuid/edit',
+    tokens: [{"old":"/admin/dashboard/user/:uuid/edit","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/user/:uuid/edit","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/user/:uuid/edit","type":0,"val":"user","end":""},{"old":"/admin/dashboard/user/:uuid/edit","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/user/:uuid/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['dashboard.user.update']['types'],
+  },
+  'dashboard.user.destroy': {
+    methods: ["DELETE"],
+    pattern: '/admin/dashboard/user/:uuid/delete',
+    tokens: [{"old":"/admin/dashboard/user/:uuid/delete","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/user/:uuid/delete","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/user/:uuid/delete","type":0,"val":"user","end":""},{"old":"/admin/dashboard/user/:uuid/delete","type":1,"val":"uuid","end":""},{"old":"/admin/dashboard/user/:uuid/delete","type":0,"val":"delete","end":""}],
+    types: placeholder as Registry['dashboard.user.destroy']['types'],
+  },
+  'contact.store': {
+    methods: ["POST"],
+    pattern: '/contact',
+    tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
+    types: placeholder as Registry['contact.store']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

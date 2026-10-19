@@ -7,6 +7,21 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class AboutSchema extends BaseModel {
+  static $columns = ['content', 'createdAt', 'order', 'updatedAt', 'uuid'] as const
+  $columns = AboutSchema.$columns
+  @column()
+  declare content: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare order: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
 export class ExperienceStackSchema extends BaseModel {
   static $columns = ['createdAt', 'experienceUuid', 'stackName', 'updatedAt', 'uuid'] as const
   $columns = ExperienceStackSchema.$columns
@@ -49,6 +64,21 @@ export class ExperienceSchema extends BaseModel {
   declare period: string
   @column()
   declare role: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
+export class HeroStatusSchema extends BaseModel {
+  static $columns = ['createdAt', 'isActive', 'text', 'updatedAt', 'uuid'] as const
+  $columns = HeroStatusSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare isActive: boolean
+  @column()
+  declare text: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
   @column({ isPrimary: true })

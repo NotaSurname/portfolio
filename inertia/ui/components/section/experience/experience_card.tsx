@@ -49,6 +49,14 @@ export default function ExperienceCard({ experiences, showCustom = false }: Prop
     )
   }
 
+  if (experiences.length === 0) {
+    return (
+      <p className="rounded-lg border border-dashed border-white/10 p-6 text-center text-stone-200/60">
+        Aucune expérience pour le moment.
+      </p>
+    )
+  }
+
   return (
     <>
       <div className="relative w-full pl-6 sm:pl-8">
@@ -60,7 +68,7 @@ export default function ExperienceCard({ experiences, showCustom = false }: Prop
               <div className="absolute -left-4.75 top-1.5 h-3 w-3 rounded-full border border-blue-500 bg-neutral-950 sm:-left-5.75" />
 
               <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-xl font-medium text-[#EDEAE4]">
+                <h3 className="text-xl font-medium text-[#EDEAE4] break-all">
                   {experience.role} <span className="text-blue-500">@ {experience.company}</span>
                 </h3>
                 <span className="flex items-center gap-1.5 font-mono text-xs text-stone-400">

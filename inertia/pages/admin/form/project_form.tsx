@@ -19,6 +19,8 @@ const FIELD_ORDER = [
   'cardSize',
 ]
 
+const LIMITS = { title: 255, description: 255, explanation: 2000 }
+
 type Props = { project?: ProjectData }
 
 const CARD_SIZES = [
@@ -102,6 +104,7 @@ export default function ProjectForm({ project }: Props) {
             value={data.title}
             onChange={(e) => setData('title', e.target.value)}
             error={errors.title}
+            maxChars={LIMITS.title}
           />
 
           <Textarea
@@ -112,6 +115,7 @@ export default function ProjectForm({ project }: Props) {
             value={data.description}
             onChange={(e) => setData('description', e.target.value)}
             error={errors.description}
+            maxChars={LIMITS.description}
           />
 
           <Textarea
@@ -123,6 +127,7 @@ export default function ProjectForm({ project }: Props) {
             value={data.explanation}
             onChange={(e) => setData('explanation', e.target.value)}
             error={errors.explanation}
+            maxChars={LIMITS.explanation}
           />
 
           <TagInput
@@ -132,6 +137,8 @@ export default function ProjectForm({ project }: Props) {
             tags={data.stacks}
             onChange={(tags) => setData('stacks', tags)}
             error={stackError}
+            maxTags={20}
+            maxChars={20}
           />
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

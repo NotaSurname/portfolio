@@ -14,6 +14,7 @@ export default class InertiaMiddleware extends BaseInertiaMiddleware {
      * with all the properties
      */
     const { auth } = ctx as Partial<HttpContext>
+    const { session } = ctx
 
     /**
      * Data shared with all Inertia pages. Make sure you are using
@@ -21,6 +22,9 @@ export default class InertiaMiddleware extends BaseInertiaMiddleware {
      */
     return {
       errors: ctx.inertia.always(this.getValidationErrors(ctx)),
+      flash: ctx.inertia.always({
+        error: session?.flashMessages.get('error'),
+      }),
       user: ctx.inertia.always(auth?.user ? UserTransformer.transform(auth.user) : undefined),
     }
   }

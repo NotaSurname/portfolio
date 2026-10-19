@@ -67,16 +67,76 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['logout']>>>
     }
   }
-  'dashboard.index': {
+  'dashboard.about.show': {
     methods: ["GET","HEAD"]
-    pattern: '/admin/dashboard'
+    pattern: '/admin/dashboard/about'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dashboard_controller').default['index']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dashboard_controller').default['index']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/about_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/about_controller').default['show']>>>
+    }
+  }
+  'dashboard.hero_status.update': {
+    methods: ["POST"]
+    pattern: '/admin/dashboard/hero-status'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/hero_status').updateHeroStatusValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/hero_status').updateHeroStatusValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/hero_statuses_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/hero_statuses_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'about.store': {
+    methods: ["POST"]
+    pattern: '/admin/dashboard/about-paragraph/create'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/about').aboutParagraphValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/about').aboutParagraphValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/about_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/about_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'about.update': {
+    methods: ["POST"]
+    pattern: '/admin/dashboard/about-paragraph/:uuid/edit'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/about').aboutParagraphValidator)>>
+      paramsTuple: [ParamValue]
+      params: { uuid: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/about').aboutParagraphValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/about_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/about_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'about.reorder': {
+    methods: ["PUT"]
+    pattern: '/admin/dashboard/about-paragraph/reorder'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/about').reorderAboutValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/about').reorderAboutValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/about_controller').default['reorder']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/about_controller').default['reorder']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'about.destroy': {
+    methods: ["DELETE"]
+    pattern: '/admin/dashboard/about-paragraph/:uuid/delete'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { uuid: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/about_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/about_controller').default['destroy']>>>
     }
   }
   'dashboard.projects': {
@@ -233,6 +293,66 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/experiences_controller').default['destroy']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/experiences_controller').default['destroy']>>>
+    }
+  }
+  'dashboard.users.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/admin/dashboard/users'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/users_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['index']>>>
+    }
+  }
+  'dashboard.users.store': {
+    methods: ["POST"]
+    pattern: '/admin/dashboard/user/create'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user').createUserValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user').createUserValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/users_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'dashboard.user.update': {
+    methods: ["POST"]
+    pattern: '/admin/dashboard/user/:uuid/edit'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user').updateUserValidator)>>
+      paramsTuple: [ParamValue]
+      params: { uuid: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/user').updateUserValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/users_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'dashboard.user.destroy': {
+    methods: ["DELETE"]
+    pattern: '/admin/dashboard/user/:uuid/delete'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { uuid: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/users_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['destroy']>>>
+    }
+  }
+  'contact.store': {
+    methods: ["POST"]
+    pattern: '/contact'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/contact').contactValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/contact').contactValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/contact_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/contact_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
 }
