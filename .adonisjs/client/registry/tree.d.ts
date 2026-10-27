@@ -22,6 +22,9 @@ export interface ApiDefinition {
     heroStatus: {
       update: typeof routes['dashboard.hero_status.update']
     }
+    heroPhoto: {
+      update: typeof routes['dashboard.hero_photo.update']
+    }
     projects: typeof routes['dashboard.projects'] & {
       create: typeof routes['dashboard.projects.create']
       edit: typeof routes['dashboard.projects.edit']

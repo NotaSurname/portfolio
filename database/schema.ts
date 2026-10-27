@@ -71,12 +71,24 @@ export class ExperienceSchema extends BaseModel {
 }
 
 export class HeroStatusSchema extends BaseModel {
-  static $columns = ['createdAt', 'isActive', 'text', 'updatedAt', 'uuid'] as const
+  static $columns = [
+    'createdAt',
+    'image',
+    'isActive',
+    'isPhotoVisible',
+    'text',
+    'updatedAt',
+    'uuid',
+  ] as const
   $columns = HeroStatusSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column()
+  declare image: any | null
+  @column()
   declare isActive: boolean
+  @column()
+  declare isPhotoVisible: boolean
   @column()
   declare text: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })

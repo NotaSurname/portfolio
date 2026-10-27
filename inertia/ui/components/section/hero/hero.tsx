@@ -5,13 +5,16 @@ import { usePage } from '@inertiajs/react'
 import { type HeroStatusData } from '~/types/hero_status'
 
 export default function Hero() {
-  const { heroStatus } = usePage().props as unknown as {
+  const { heroStatus, heroImageUrl } = usePage().props as unknown as {
     heroStatus: HeroStatusData | null
+    heroImageUrl: string | null
   }
 
   return (
     <section className="relative min-h-screen flex w-full flex-col items-center justify-center overflow-hidden text-center">
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 text-center sm:flex-row sm:justify-around sm:gap-8 sm:px-6 sm:text-left md:max-w-390">
+      <div
+        className={`relative mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 text-center sm:flex-row sm:gap-8 sm:px-6 sm:text-left md:max-w-390 ${heroImageUrl ? 'sm:justify-around' : 'mr-10'}`}
+      >
         <div className="order-2 flex gap-3 min-h-24 flex-col text-4xl sm:order-1 sm:min-h-40 sm:text-5xl md:min-h-35 md:text-8xl">
           {heroStatus && (
             <p className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-stone-200 sm:px-4 sm:py-2 sm:text-sm w-fit">
@@ -62,7 +65,9 @@ export default function Hero() {
           </div>
         </div>
 
-        <BlobImage src="/moi.jpg" alt="Photo de Mathéo" className="order-1 sm:order-2" />
+        {heroImageUrl && (
+          <BlobImage src={heroImageUrl} alt="Photo de Mathéo" className="order-1 sm:order-2" />
+        )}
       </div>
     </section>
   )

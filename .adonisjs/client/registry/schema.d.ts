@@ -91,6 +91,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/hero_statuses_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'dashboard.hero_photo.update': {
+    methods: ["POST"]
+    pattern: '/admin/dashboard/hero-photo'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/hero_status').updateHeroPhotoValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/hero_status').updateHeroPhotoValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/hero_statuses_controller').default['updatePhoto']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/hero_statuses_controller').default['updatePhoto']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'about.store': {
     methods: ["POST"]
     pattern: '/admin/dashboard/about-paragraph/create'

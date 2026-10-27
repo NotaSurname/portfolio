@@ -12,6 +12,8 @@ export default class AboutController {
     return inertia.render('admin/about', {
       paragraphs,
       status: { isActive: status.isActive, text: status.text },
+      heroImageUrl: status.image?.url ?? null,
+      heroIsPhotoVisible: status.isPhotoVisible,
     })
   }
 
