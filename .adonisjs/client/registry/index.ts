@@ -48,6 +48,12 @@ const routes = {
     tokens: [{"old":"/admin/dashboard/hero-status","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/hero-status","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/hero-status","type":0,"val":"hero-status","end":""}],
     types: placeholder as Registry['dashboard.hero_status.update']['types'],
   },
+  'dashboard.hero_photo.update': {
+    methods: ["POST"],
+    pattern: '/admin/dashboard/hero-photo',
+    tokens: [{"old":"/admin/dashboard/hero-photo","type":0,"val":"admin","end":""},{"old":"/admin/dashboard/hero-photo","type":0,"val":"dashboard","end":""},{"old":"/admin/dashboard/hero-photo","type":0,"val":"hero-photo","end":""}],
+    types: placeholder as Registry['dashboard.hero_photo.update']['types'],
+  },
   'about.store': {
     methods: ["POST"],
     pattern: '/admin/dashboard/about-paragraph/create',

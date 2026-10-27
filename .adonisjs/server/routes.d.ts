@@ -11,6 +11,7 @@ export type ScannedRoutes = {
     'logout': { paramsTuple?: []; params?: {} }
     'dashboard.about.show': { paramsTuple?: []; params?: {} }
     'dashboard.hero_status.update': { paramsTuple?: []; params?: {} }
+    'dashboard.hero_photo.update': { paramsTuple?: []; params?: {} }
     'about.store': { paramsTuple?: []; params?: {} }
     'about.update': { paramsTuple: [ParamValue]; params: {'uuid': ParamValue} }
     'about.reorder': { paramsTuple?: []; params?: {} }
@@ -64,6 +65,7 @@ export type ScannedRoutes = {
     'check.login': { paramsTuple?: []; params?: {} }
     'logout': { paramsTuple?: []; params?: {} }
     'dashboard.hero_status.update': { paramsTuple?: []; params?: {} }
+    'dashboard.hero_photo.update': { paramsTuple?: []; params?: {} }
     'about.store': { paramsTuple?: []; params?: {} }
     'about.update': { paramsTuple: [ParamValue]; params: {'uuid': ParamValue} }
     'projects.store': { paramsTuple?: []; params?: {} }

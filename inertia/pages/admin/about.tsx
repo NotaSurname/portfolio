@@ -5,11 +5,22 @@ import SidebarWrapper from '~/ui/components/section/admin/sidebar_wrapper'
 import AboutParagraphCard from '~/ui/components/section/about/about_paragraph_card'
 import AboutParagraphModal from '~/pages/admin/form/about_paragraph_modal'
 import HeroStatusCard from '~/ui/components/section/hero/hero_status_card'
+import HeroPhotoCard from '~/ui/components/section/hero/hero_photo_card'
 import { type HeroStatusData } from '~/types/hero_status'
 
-type Props = { paragraphs: AboutParagraphData[]; status: HeroStatusData }
+type Props = {
+  paragraphs: AboutParagraphData[]
+  status: HeroStatusData
+  heroImageUrl: string | null
+  heroIsPhotoVisible: boolean
+}
 
-export default function DashboardAbout({ paragraphs, status }: Props) {
+export default function DashboardAbout({
+  paragraphs,
+  status,
+  heroImageUrl,
+  heroIsPhotoVisible,
+}: Props) {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editing, setEditing] = useState<AboutParagraphData | null>(null)
 
@@ -31,8 +42,9 @@ export default function DashboardAbout({ paragraphs, status }: Props) {
   return (
     <div className="min-h-screen bg-neutral-950">
       <SidebarWrapper>
-        <div className="w-full max-w-2xl pb-8">
+        <div className="flex w-full max-w-2xl flex-col gap-3 pb-8">
           <HeroStatusCard status={status} />
+          <HeroPhotoCard currentImageUrl={heroImageUrl} isPhotoVisible={heroIsPhotoVisible} />
         </div>
 
         <div className="flex w-full max-w-2xl items-center gap-3 sm:gap-5">

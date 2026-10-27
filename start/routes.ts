@@ -34,6 +34,9 @@ router
     router.get('/about', [AboutController, 'show']).as('dashboard.about.show')
 
     router.post('/hero-status', [HeroStatusController, 'update']).as('dashboard.hero_status.update')
+    router
+      .post('/hero-photo', [HeroStatusController, 'updatePhoto'])
+      .as('dashboard.hero_photo.update')
     router.post('/about-paragraph/create', [AboutController, 'store'])
     router.post('/about-paragraph/:uuid/edit', [AboutController, 'update'])
     router.put('/about-paragraph/reorder', [AboutController, 'reorder'])

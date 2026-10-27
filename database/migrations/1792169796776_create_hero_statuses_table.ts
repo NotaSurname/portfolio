@@ -8,6 +8,8 @@ export default class extends BaseSchema {
       table.uuid('uuid').primary()
       table.boolean('is_active').notNullable().defaultTo(false)
       table.string('text', 100).notNullable().defaultTo('')
+      table.jsonb('image').nullable()
+      table.boolean('is_photo_visible').notNullable().defaultTo(false)
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').notNullable()
     })

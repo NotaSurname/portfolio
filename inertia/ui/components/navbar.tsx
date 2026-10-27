@@ -33,14 +33,14 @@ export default function NavBar() {
     <>
       {/* Desktop */}
       <nav className="hidden md:sticky md:block top-0 z-50 w-full overflow-hidden border-b border-white/50 bg-black/60 backdrop-blur-xs">
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 py-3 ">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center py-3">
           <a className="flex min-w-fit items-center gap-1.5 sm:gap-3" href="#home">
             <div className="flex flex-col leading-tight">
               <span className="font-semibold text-stone-200">Mathéo</span>
               <span className="text-sm text-stone-200/70">Développeur Web</span>
             </div>
           </a>
-          <ul className="flex flex-wrap items-center gap-1 text-sm font-medium sm:gap-1.5">
+          <ul className="absolute left-1/2 -translate-x-1/2 flex flex-wrap items-center gap-1 text-sm font-medium sm:gap-1.5">
             {NAV_ITEMS.map(({ label, href }) => (
               <li key={label} className={linkClasses}>
                 <a href={href}>{label}</a>
@@ -48,28 +48,21 @@ export default function NavBar() {
               </li>
             ))}
           </ul>
-          {isAuth ? (
-            <>
-              <div className="flex items-center justify-center gap-5">
-                <Link
-                  href="/admin/dashboard/about"
-                  className="group relative flex items-center gap-1.5 py-1 text-stone-200"
-                  target="_blank"
-                >
-                  Dashboard
-                  <ExternalLink className="h-4 w-4 shrink-0" />
-                  <span className="absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-[#357DED] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-                </Link>
-
-                <Link href="/logout" method="post" className={authButtonClasses}>
-                  Se déconnecter
-                </Link>
-              </div>
-            </>
-          ) : (
-            <Link href="/auth/login" className={authButtonClasses}>
-              Se connecter
-            </Link>
+          {isAuth && (
+            <div className="ml-auto flex items-center justify-center gap-5">
+              <Link
+                href="/admin/dashboard/about"
+                className="group relative flex items-center gap-1.5 py-1 text-stone-200"
+                target="_blank"
+              >
+                Dashboard
+                <ExternalLink className="h-4 w-4 shrink-0" />
+                <span className="absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-[#357DED] transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              </Link>
+              <Link href="/logout" method="post" className={authButtonClasses}>
+                Se déconnecter
+              </Link>
+            </div>
           )}
         </div>
       </nav>
@@ -88,26 +81,20 @@ export default function NavBar() {
               {open ? <X size={22} /> : <Menu size={22} />}
             </button>
 
-            {isAuth ? (
-              <>
-                <div className="flex items-center justify-center gap-5">
-                  <Link
-                    href="/admin/dashboard"
-                    method="get"
-                    className="rounded-lg p-2 text-sm text-left font-medium cursor-pointer transition-colors active:bg-white active:text-black text-stone-200 sm:p-3 sm:text-base"
-                    target="_blank"
-                  >
-                    Dashboard
-                  </Link>
-                  <Link href="/logout" method="post" className={authButtonClasses}>
-                    Se déconnecter
-                  </Link>
-                </div>
-              </>
-            ) : (
-              <Link href="/auth/login" className={authButtonClasses}>
-                Se connecter
-              </Link>
+            {isAuth && (
+              <div className="flex items-center justify-center gap-5">
+                <Link
+                  href="/admin/dashboard"
+                  method="get"
+                  className="rounded-lg p-2 text-sm text-left font-medium cursor-pointer transition-colors active:bg-white active:text-black text-stone-200 sm:p-3 sm:text-base"
+                  target="_blank"
+                >
+                  Dashboard
+                </Link>
+                <Link href="/logout" method="post" className={authButtonClasses}>
+                  Se déconnecter
+                </Link>
+              </div>
             )}
           </div>
 

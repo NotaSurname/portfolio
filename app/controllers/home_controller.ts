@@ -16,6 +16,7 @@ export default class HomeController {
       experiences,
       paragraphs,
       heroStatus: heroStatus?.isActive && heroStatus.text ? { text: heroStatus.text } : null,
+      heroImageUrl: heroStatus?.isPhotoVisible ? (heroStatus.image?.url ?? null) : null,
     })
   }
 }
