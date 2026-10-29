@@ -10,6 +10,7 @@ import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
 import { usePage } from '@inertiajs/react'
 import type { AboutParagraphData } from '~/types/about'
+import { GITHUB_URL, LINKEDIN_URL } from '~/constants/socials'
 
 const DEFAULT_STACK = [
   { name: 'AdonisJS', icon: SiAdonisjs },
@@ -24,13 +25,13 @@ const DEFAULT_SOCIALS = [
   {
     name: 'GitHub',
     icon: TbBrandGithub,
-    href: 'https://github.com/MON_PSEUDO',
+    href: GITHUB_URL,
     hoverClass: 'hover:text-white',
   },
   {
     name: 'LinkedIn',
     icon: FiLinkedin,
-    href: 'https://www.linkedin.com/in/MON_PROFIL',
+    href: LINKEDIN_URL,
     hoverClass: 'hover:text-sky-500',
   },
 ]
