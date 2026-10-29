@@ -1,6 +1,7 @@
 import { TbBrandGithub } from 'react-icons/tb'
 import { FiLinkedin } from 'react-icons/fi'
 import { type IconType } from 'react-icons'
+import { GITHUB_URL, LINKEDIN_URL } from '~/constants/socials'
 
 type SocialLink = {
   label: string
@@ -9,8 +10,8 @@ type SocialLink = {
 }
 
 const SOCIALS: SocialLink[] = [
-  { label: 'GitHub', href: 'https://github.com/TON_PSEUDO', icon: TbBrandGithub },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/TON_PROFIL', icon: FiLinkedin },
+  { label: 'GitHub', href: GITHUB_URL, icon: TbBrandGithub },
+  { label: 'LinkedIn', href: LINKEDIN_URL, icon: FiLinkedin },
 ]
 
 export default function Footer() {

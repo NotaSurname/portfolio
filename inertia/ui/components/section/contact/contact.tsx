@@ -2,10 +2,11 @@ import ContactForm from '~/ui/components/section/contact/contact_form'
 import ContactInfo from '~/ui/components/section/contact/contact_info'
 import { FiLinkedin } from 'react-icons/fi'
 import { TbBrandGithub } from 'react-icons/tb'
+import { GITHUB_URL, LINKEDIN_URL } from '~/constants/socials'
 
 const links = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/mon-profil', icon: FiLinkedin },
-  { label: 'GitHub', href: 'https://github.com/mon-profil', icon: TbBrandGithub },
+  { label: 'LinkedIn', href: LINKEDIN_URL, icon: FiLinkedin },
+  { label: 'GitHub', href: GITHUB_URL, icon: TbBrandGithub },
 ]
 
 export default function Contact() {
