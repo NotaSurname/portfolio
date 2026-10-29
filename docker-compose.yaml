@@ -1,0 +1,47 @@
+services:
+  app:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    env_file: .env.prod
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3333
+      DB_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: sh -c "node ace migration:run --force && node bin/server.js"
+    volumes:
+      - uploads:/app/tmp/uploads
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: portfolio_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: portfolio_tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    depends_on:
+      - app
+
+volumes:
+  postgres_data:
+  uploads:
