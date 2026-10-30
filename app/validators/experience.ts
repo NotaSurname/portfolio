@@ -8,9 +8,9 @@ export const experienceValidator = vine.create({
   description: vine.string().trim().minLength(10).maxLength(1000),
   stacks: vine
     .array(vine.string().trim().minLength(1).maxLength(50))
-    .minLength(1)
     .maxLength(20)
-    .distinct(),
+    .distinct()
+    .optional(),
 })
 
 export const experienceValidatorMessages = new SimpleMessagesProvider(
@@ -26,8 +26,6 @@ export const experienceValidatorMessages = new SimpleMessagesProvider(
     'location.required': 'La localisation est requise.',
     'period.required': 'La période est requise.',
     'description.required': 'La description est requise.',
-    'stacks.required': 'Ajoute au moins une stack.',
-    'stacks.minLength': 'Ajoute au moins une stack.',
     'stacks.maxLength': 'Tu ne peux pas ajouter plus de {{ max }} stacks.',
     'stacks.distinct': 'Une même stack ne peut pas être ajoutée deux fois.',
 
