@@ -15,7 +15,7 @@ export default class ExperiencesController {
   }
 
   async store({ response, request }: HttpContext) {
-    const { stacks, ...data } = await request.validateUsing(experienceValidator)
+    const { stacks = [], ...data } = await request.validateUsing(experienceValidator)
 
     await db.transaction(async (trx) => {
       const last = await Experience.query({ client: trx }).orderBy('order', 'desc').first()
@@ -63,7 +63,7 @@ export default class ExperiencesController {
 
   async update({ request, response, params }: HttpContext) {
     const experience = await Experience.findOrFail(params.uuid)
-    const { stacks, ...data } = await request.validateUsing(experienceValidator)
+    const { stacks = [], ...data } = await request.validateUsing(experienceValidator)
 
     await db.transaction(async (trx) => {
       experience.useTransaction(trx)
